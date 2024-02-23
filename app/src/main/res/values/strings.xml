@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Railway</string>
+    <string name="main_text">Hello My World!</string>
+    <string name="submit">SUBMIT</string>
 </resources>
