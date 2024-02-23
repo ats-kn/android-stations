@@ -1,28 +1,26 @@
 package com.example.techtrain.railway.android
 
-import android.graphics.Color
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.techtrain.railway.android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //ViewBindingの設定
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         //TextViewの設定
-        val textView = findViewById<TextView>(R.id.text)
+        binding.textView.text = getString(R.string.main_text)
 
-        //EditTextの設定
-        val editText = findViewById<EditText>(R.id.editText)
-
-        //Buttonの設定
-        val button = findViewById<Button>(R.id.button)
-        button.setOnClickListener {
-            textView.text = editText.text
+        //Buttonの設定(editTextが受け取ったテキストをtextViewで表示)
+        binding.button.setOnClickListener {
+            binding.textView.text = binding.editText.text
         }
     }
 }
