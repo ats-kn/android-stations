@@ -1,5 +1,6 @@
 package com.example.techtrain.railway.android
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.databinding.ActivityMainBinding
@@ -20,7 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         //Buttonの設定(editTextが受け取ったテキストをtextViewで表示)
         binding.button.setOnClickListener {
-            binding.textView.text = binding.editText.text
+            //NewActivityに遷移
+            val intent = Intent(this, NewActivity::class.java)
+            startActivity(intent)
         }
     }
 }

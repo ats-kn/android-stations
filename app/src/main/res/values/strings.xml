@@ -1,5 +1,6 @@
-<resources>
-    <string name="app_name">Railway</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Railway</string>
     <string name="main_text" translatable="false">Hello My World!</string>
-    <string name="submit">SUBMIT</string>
+    <string name="submit" tools:ignore="MissingTranslation">SUBMIT</string>
+    <string name="new_activity" tools:ignore="MissingTranslation">New Activity</string>
 </resources>
