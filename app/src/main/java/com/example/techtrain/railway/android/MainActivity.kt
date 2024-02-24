@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         binding.button.setOnClickListener {
             //NewActivityに遷移
             val intent = Intent(this, NewActivity::class.java)
+            //editTextのテキストをintentに保存
+            intent.putExtra("KEY_INPUT_TEXT", binding.editText.text.toString())
             startActivity(intent)
         }
     }
