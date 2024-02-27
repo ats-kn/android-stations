@@ -1,31 +1,41 @@
 package com.example.techtrain.railway.android
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //ViewBindingの設定
+        //Bindingの設定
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //TextViewの設定
-        binding.textView.text = getString(R.string.main_text)
+        //APIからデータを取得
+        val call = service.getBookData()
 
-        //Buttonの設定(editTextが受け取ったテキストをtextViewで表示)
-        binding.button.setOnClickListener {
-            //NewActivityに遷移
-            val intent = Intent(this, NewActivity::class.java)
-            //editTextのテキストをintentに保存
-            intent.putExtra("KEY_INPUT_TEXT", binding.editText.text.toString())
-            startActivity(intent)
-        }
+        //enqueue(非同期通信)でデータを取得
+        call.enqueue(object : Callback<List<Book>> {
+            override fun onResponse(call: Call<List<Book>>, response: Response<List<Book>>) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    // GETしたデータをtextViewに表示
+                    binding.textView.text = data.toString()
+                }
+            }
+
+            //通信に失敗した場合
+            override fun onFailure(call: Call<List<Book>>, t: Throwable) {
+                //エラーをログに表示
+                Log.d("Error", t.message.toString())
+            }
+        })
     }
 }
