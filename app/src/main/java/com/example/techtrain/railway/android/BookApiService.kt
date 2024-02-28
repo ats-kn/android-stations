@@ -10,23 +10,23 @@ import retrofit2.http.GET
 private const val BASE_URL =
     "https://railway.bookreview.techtrain.dev"
 
-//Moshi Builderを作成
+//Moshiのインスタンスを作成
 private val moshi = Moshi.Builder()
     .addLast(KotlinJsonAdapterFactory())
     .build()
 
-//Retrofit Builderを作成
+//Retrofitのインスタンスを作成
 private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL) //ベースURLを指定
     .addConverterFactory(MoshiConverterFactory.create(moshi)) //Moshiを使用してJSONをパース
     .build()
 
-//APIのServiceを作成
+//APIインターフェースの実体を作成
 val service: BookApiService = retrofit.create(BookApiService::class.java)
 
 //BookApiServiceインターフェイス(インターフェイス：複数のクラスで使用できる共通メソッド)を作成
 interface BookApiService {
-    @GET("public/books") // エンドポイントのURLを指定します
-    fun getBookData(): Call<List<Book>>// 受け取るデータクラスを指定します
+    @GET("public/books") //pathを指定
+    fun getBookData(): Call<List<Book>>//受け取るデータクラスを指定
 }
 
