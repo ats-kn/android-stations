@@ -30,7 +30,10 @@ class MainActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val data = response.body()
                     // GETしたデータをtextViewに表示
-                    binding.textView.text = data.toString()
+                    runOnUiThread {
+                        binding.textView.text = data.toString()
+                    }
+
                 } else {
                     //httpステータスコードが200番台以外の場合、ログを表示
                     Log.e(getString(R.string.mainactivity), response.message())
