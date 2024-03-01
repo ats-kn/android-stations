@@ -2,7 +2,11 @@ package com.example.techtrain.railway.android
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.techtrain.railway.android.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,9 +33,28 @@ class MainActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     val data = response.body()
-                    // GETしたデータをtextViewに表示
+
+                    //GETしたデータをRecyclerViewに表示
                     runOnUiThread {
-                        binding.textView.text = data.toString()
+                        //Loadingテキストを非表示にする
+                        binding.loading.visibility = View.GONE
+
+                        //RecyclerViewの設定
+                        //setHasFixedSizeはRecyclerViewのサイズが変わる可能性がある場合falseにする
+                        binding.recyclerView.setHasFixedSize(true)
+
+                        //Adapterを設定
+                        binding.recyclerView.adapter = BookAdapter(data!!)
+
+                        //LayoutManager(アイテムの並べ方を決める)
+                        binding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+
+                        //RecyclerViewに境界線を表示する処理
+                        val dividerItemDecoration = DividerItemDecoration(
+                            this@MainActivity,
+                            RecyclerView.VERTICAL
+                        )
+                        binding.recyclerView.addItemDecoration(dividerItemDecoration)
                     }
 
                 } else {
