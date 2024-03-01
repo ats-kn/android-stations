@@ -2,7 +2,6 @@ package com.example.techtrain.railway.android
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.databinding.ActivityMainBinding
 
@@ -28,34 +27,5 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("KEY_INPUT_TEXT", binding.editText.text.toString())
             startActivity(intent)
         }
-
-        //LOG
-        Log.d("MainActivity", "onCreate")
     }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("MainActivity", "onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("MainActivity", "onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("MainActivity", "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("MainActivity", "onStop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("MainActivity", "onDestroy")
-    }
-
 }
