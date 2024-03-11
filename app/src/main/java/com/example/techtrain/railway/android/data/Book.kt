@@ -1,4 +1,4 @@
-package com.example.techtrain.railway.android
+package com.example.techtrain.railway.android.data
 
 data class Book(
     val id: String,

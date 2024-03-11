@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.ActivityGetbookdataBinding
 import retrofit2.Call
 import retrofit2.Callback

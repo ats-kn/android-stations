@@ -7,4 +7,8 @@
     <string name="mainactivity">MainActivity</string>
     <string name="sing_in">Sing In</string>
     <string name="login">Login</string>
+    <string name="user_name_editText_label">ユーザ名を入力してください</string>
+    <string name="user_email_editText_label">メールアドレスを入力してください</string>
+    <string name="user_password_editText_label">パスワードを入力してください</string>
+    <string name="user_entry">ユーザ登録</string>
 </resources>

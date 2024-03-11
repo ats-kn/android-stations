@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.BookItemBinding
 
 //List<Book>を受け取るBookAdapterクラスを作成
