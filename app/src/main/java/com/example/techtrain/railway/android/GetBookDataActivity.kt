@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.ActivityGetbookdataBinding
+import com.example.techtrain.railway.android.utils.BookAdapter
+import com.example.techtrain.railway.android.utils.service
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

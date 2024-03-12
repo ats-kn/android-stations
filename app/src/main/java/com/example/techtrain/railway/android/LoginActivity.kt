@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.techtrain.railway.android.data.Login
+import com.example.techtrain.railway.android.data.User
 import com.example.techtrain.railway.android.databinding.ActivityLoginBinding
+import com.example.techtrain.railway.android.utils.service
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,10 +23,10 @@ class LoginActivity: AppCompatActivity() {
         binding.buttonLogin.setOnClickListener {
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
-            val user = Login(email, password)
-
+            val user = User("", email, password)
             val login = service.login(user)
 
+            //emailのValidation
             login.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
@@ -34,7 +35,6 @@ class LoginActivity: AppCompatActivity() {
                         Toast.makeText(this@LoginActivity, "Error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
                     }
                 }
-
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }

@@ -1,10 +1,9 @@
-package com.example.techtrain.railway.android
+package com.example.techtrain.railway.android.utils
 
 import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.data.Login
 import com.example.techtrain.railway.android.data.User
 import com.squareup.moshi.Moshi
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -38,9 +37,9 @@ interface BookApiService {
 
     // ユーザー情報を登録
     @POST("users")
-    fun signIn(@Body user: User): Call<ResponseBody>
+    fun signin(@Body user: User): Call<ResponseBody>//サーバからのレスポンスはResponseBodyとして受け取る
 
     // ユーザー認証
     @POST("signin")
-    fun login(@Body login: Login): Call<ResponseBody>
+    fun login(@Body login: User): Call<ResponseBody>//サーバからのレスポンスはResponseBodyとして受け取る
 }

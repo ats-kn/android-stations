@@ -1,4 +1,4 @@
-package com.example.techtrain.railway.android
+package com.example.techtrain.railway.android.utils
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         //SingInボタンが押された時の処理
         binding.signInButton.setOnClickListener {
             //SignInActivityに遷移
-            val intent = Intent(this, SignInActivity::class.java)
+            val intent = Intent(this, SigninActivity::class.java)
             startActivity(intent)
         }
 
