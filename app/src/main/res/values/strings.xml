@@ -10,5 +10,9 @@
     <string name="user_name_editText_label">ユーザ名を入力してください</string>
     <string name="user_email_editText_label">メールアドレスを入力してください</string>
     <string name="user_password_editText_label">パスワードを入力してください</string>
-    <string name="user_entry">ユーザ登録</string>
+    <string name="user_entry">アカウント作成</string>
+    <string name="check_email">有効なメールアドレスを入力してください</string>
+    <string name="check_password">大文字、小文字、数字を含む8文字以上のパスワードを入力してください</string>
+    <string name="validation_email">^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.+[a-z]+</string>
+    <string name="validation_password">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$</string>
 </resources>

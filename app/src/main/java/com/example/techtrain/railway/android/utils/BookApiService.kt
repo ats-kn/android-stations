@@ -1,7 +1,6 @@
 package com.example.techtrain.railway.android.utils
 
 import com.example.techtrain.railway.android.data.Book
-import com.example.techtrain.railway.android.data.Login
 import com.example.techtrain.railway.android.data.User
 import com.squareup.moshi.Moshi
 import okhttp3.ResponseBody

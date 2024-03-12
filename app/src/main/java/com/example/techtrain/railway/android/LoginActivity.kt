@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.data.User
 import com.example.techtrain.railway.android.databinding.ActivityLoginBinding
+import com.example.techtrain.railway.android.utils.ValidationUtils
 import com.example.techtrain.railway.android.utils.service
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -20,19 +21,26 @@ class LoginActivity: AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.buttonLogin.setOnClickListener {
+        val textWatcher = ValidationUtils.createTextWatcher(this,null, binding.editTextEmail, binding.editTextPassword, binding.loginButton)
+        binding.editTextEmail.addTextChangedListener(textWatcher)
+        binding.editTextPassword.addTextChangedListener(textWatcher)
+
+        binding.loginButton.setOnClickListener {
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
             val user = User("", email, password)
             val login = service.login(user)
 
-            //emailのValidation
             login.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
                         Log.d("LoginActivity", "ログインに成功しました")
                     } else {
-                        Toast.makeText(this@LoginActivity, "Error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
+                        // サーバからのhttpエラーメッセージを取得
+                        val errorMessage = response.errorBody()?.string()
+                        // errorMessageの中からErrorMessageJPを抜き出す
+                        val errorMessageJP = errorMessage?.substringAfter("ErrorMessageJP\":\"")?.substringBefore("\"")
+                        Toast.makeText(this@LoginActivity, "Error: $errorMessageJP", Toast.LENGTH_SHORT).show()
                     }
                 }
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {

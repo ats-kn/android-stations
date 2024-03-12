@@ -2,29 +2,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="8dp"
+        tools:context=".LoginActivity">
 
     <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:minHeight="48dp"/>
+            android:layout_marginBottom="20dp"
+            android:hint="@string/user_email_editText_label"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
 
     <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:minHeight="48dp"/>
+            android:layout_marginBottom="20dp"
+            android:hint="@string/user_password_editText_label"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp" />
 
     <Button
-            android:id="@+id/buttonLogin"
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:layout_marginStart="116dp"
+            android:layout_marginEnd="116dp"
+            android:text="@string/login"
             android:minHeight="48dp"/>
 
 </LinearLayout>
