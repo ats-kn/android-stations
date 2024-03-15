@@ -42,7 +42,7 @@ class LoginActivity: AppCompatActivity() {
                         val token = response.body()?.string()?.substringAfter("token\":\"")?.substringBefore("\"")
                         // SharedPreferencesを使用してトークンを保存
                         val sharedPref = getSharedPreferences(
-                            getString(R.string.signin_preference), Context.MODE_PRIVATE)
+                            getString(R.string.preference), Context.MODE_PRIVATE)
                         with (sharedPref.edit()) {
                             putString(getString(R.string.token_key), token)
                             apply()

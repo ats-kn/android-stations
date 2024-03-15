@@ -15,6 +15,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // SharedPreferencesからトークンを取得
+        val token = getSharedPreferences(getString(R.string.preference), MODE_PRIVATE).getString(getString(R.string.token_key), null)
+
+        // トークンがnullでなければBookReviewActivityに遷移
+        if (token != null) {
+            val intent = Intent(this, BookReviewActivity::class.java)
+            startActivity(intent)
+            // MainActivityを終了
+            finish()
+        }
+
         //SingInボタンが押された時の処理
         binding.signInButton.setOnClickListener {
             //SignInActivityに遷移
