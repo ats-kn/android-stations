@@ -18,13 +18,17 @@ class SigninActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Bindingの設定
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // バリテーションのためのTextWatcherを設定
         val textWatcher = ValidationUtils.createTextWatcher(this, binding.editTextName, binding.editTextEmail, binding.editTextPassword, binding.signinButton)
         binding.editTextEmail.addTextChangedListener(textWatcher)
         binding.editTextPassword.addTextChangedListener(textWatcher)
 
+        // サインインボタンが押された時の処理
         binding.signinButton.setOnClickListener {
             val name = binding.editTextName.text.toString()
             val email = binding.editTextEmail.text.toString()
@@ -32,6 +36,7 @@ class SigninActivity : AppCompatActivity() {
             val user = User(name, email, password)
             val signin = service.signin(user)
 
+            // enqueue(非同期通信)でサーバからレスポンスを受け取る
             signin.enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
