@@ -1,5 +1,7 @@
 package com.example.techtrain.railway.android
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -35,6 +37,21 @@ class LoginActivity: AppCompatActivity() {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
                         Log.d("LoginActivity", "ログインに成功しました")
+
+                        // サインインに成功したらトークンを取得
+                        val token = response.body()?.string()?.substringAfter("token\":\"")?.substringBefore("\"")
+                        // SharedPreferencesを使用してトークンを保存
+                        val sharedPref = getSharedPreferences(
+                            getString(R.string.signin_preference), Context.MODE_PRIVATE)
+                        with (sharedPref.edit()) {
+                            putString(getString(R.string.token_key), token)
+                            apply()
+                        }
+
+                        // BookReviewActivityに遷移
+                        val intent = Intent(this@LoginActivity, BookReviewActivity::class.java)
+                        startActivity(intent)
+
                     } else {
                         // サーバからのhttpエラーメッセージを取得
                         val errorMessage = response.errorBody()?.string()
