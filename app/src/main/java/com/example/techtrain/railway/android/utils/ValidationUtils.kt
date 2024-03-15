@@ -13,7 +13,14 @@ import com.example.techtrain.railway.android.R
 object ValidationUtils {
 
     // 入力された値が正しいかどうかを判定しボタンを制御するTextWatcherを作成
-    fun createTextWatcher(activity: AppCompatActivity, nameEditText: EditText?, emailEditText: EditText, passwordEditText: EditText, button: Button): TextWatcher {
+    fun createTextWatcher(
+        activity: AppCompatActivity,
+        nameEditText: EditText?,
+        emailEditText: EditText,
+        passwordEditText: EditText,
+        button: Button
+    ): TextWatcher {
+
         // ボタンを無効化
         button.isEnabled = false
         button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.disabled_button_color)
@@ -93,6 +100,7 @@ object ValidationUtils {
                 }
             }
 
+            // 以降のメソッドは使わないけど消せないので空実装
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }

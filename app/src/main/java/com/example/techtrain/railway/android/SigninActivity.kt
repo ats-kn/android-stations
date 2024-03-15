@@ -1,5 +1,7 @@
 package com.example.techtrain.railway.android
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -24,7 +26,14 @@ class SigninActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // バリテーションのためのTextWatcherを設定
-        val textWatcher = ValidationUtils.createTextWatcher(this, binding.editTextName, binding.editTextEmail, binding.editTextPassword, binding.signinButton)
+        val textWatcher = ValidationUtils.createTextWatcher(
+            this,
+            binding.editTextName,
+            binding.editTextEmail,
+            binding.editTextPassword,
+            binding.signinButton
+        )
+
         binding.editTextEmail.addTextChangedListener(textWatcher)
         binding.editTextPassword.addTextChangedListener(textWatcher)
 
@@ -41,12 +50,32 @@ class SigninActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful) {
                         Log.d("SignInActivity", "サインインに成功しました")
+
+                        // サインインに成功したらトークンを取得
+                        val token = response.body()?.string()?.substringAfter("token\":\"")?.substringBefore("\"")
+                        // SharedPreferencesを使用してトークンを保存
+                        val sharedPref = getSharedPreferences(
+                            getString(R.string.signin_preference), Context.MODE_PRIVATE)
+                        with (sharedPref.edit()) {
+                            putString(getString(R.string.token_key), token)
+                            apply()
+                        }
+
+                        // BookReviewActivityに遷移
+                        val intent = Intent(this@SigninActivity, BookReviewActivity::class.java)
+                        startActivity(intent)
+
                     } else {
                         // サーバからのhttpエラーメッセージを取得
                         val errorMessage = response.errorBody()?.string()
+
                         // errorMessageの中からErrorMessageJPを抜き出す
                         val errorMessageJP = errorMessage?.substringAfter("ErrorMessageJP\":\"")?.substringBefore("\"")
-                        Toast.makeText(this@SigninActivity, "Error: $errorMessageJP", Toast.LENGTH_SHORT).show()
+
+                        Toast.makeText(
+                            this@SigninActivity,
+                            "Error: $errorMessageJP",
+                            Toast.LENGTH_SHORT).show()
                     }
                 }
 
