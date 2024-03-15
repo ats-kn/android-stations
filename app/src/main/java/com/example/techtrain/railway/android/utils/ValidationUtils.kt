@@ -91,7 +91,6 @@ object ValidationUtils {
                     button.isEnabled = false
                     button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.disabled_button_color)
                 }
-
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
