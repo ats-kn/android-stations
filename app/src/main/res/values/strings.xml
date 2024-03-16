@@ -5,8 +5,8 @@
     <string name="new_activity" tools:ignore="MissingTranslation">New Activity</string>
     <string name="loading">Loading...</string>
     <string name="mainactivity">MainActivity</string>
-    <string name="sing_in">Sing In</string>
-    <string name="login">Login</string>
+    <string name="sing_in">サインイン</string>
+    <string name="login">ログイン</string>
     <string name="user_name_editText_label">ユーザ名を入力してください</string>
     <string name="user_email_editText_label">メールアドレスを入力してください</string>
     <string name="user_password_editText_label">パスワードを入力してください</string>
@@ -17,5 +17,6 @@
     <string name="validation_password">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$</string>
     <string name="preference">Preference</string>
     <string name="token_key">token_key</string>
-    <string name="logout">Logout</string>
+    <string name="logout">ログアウト</string>
+    <string name="User_Info_Editor">ユーザ情報編集</string>
 </resources>
