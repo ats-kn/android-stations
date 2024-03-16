@@ -11,6 +11,7 @@
     <string name="user_email_editText_label">メールアドレスを入力してください</string>
     <string name="user_password_editText_label">パスワードを入力してください</string>
     <string name="user_entry">アカウント作成</string>
+    <string name="check_name">ユーザ名は3文字以上にしてください</string>
     <string name="check_email">有効なメールアドレスを入力してください</string>
     <string name="check_password">大文字、小文字、数字を含む8文字以上のパスワードを入力してください</string>
     <string name="validation_email">^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.+[a-z]+</string>
@@ -19,4 +20,5 @@
     <string name="token_key">token_key</string>
     <string name="logout">ログアウト</string>
     <string name="User_Info_Editor">ユーザ情報編集</string>
+    <string name="user_name_edit_editText_label">変更するユーザー名を入力してください</string>
 </resources>

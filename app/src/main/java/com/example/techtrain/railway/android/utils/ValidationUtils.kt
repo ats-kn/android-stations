@@ -25,6 +25,12 @@ object ValidationUtils {
         button.isEnabled = false
         button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.disabled_button_color)
 
+        // ユーザー名のバリデーション
+        // 3文字以上のユーザー名を許可
+        fun isValidName(name: String): Boolean {
+            return name.length >= 3
+        }
+
         // メールアドレスのバリデーション
         fun isValidEmail(email: String): Boolean {
             val emailRegex = activity.getString(R.string.validation_email).toRegex()
@@ -40,13 +46,20 @@ object ValidationUtils {
         // キーボードを隠すためのInputMethodManagerを取得
         val inputMethodManager = getSystemService(activity, InputMethodManager::class.java)
 
-        // フォーカスが外れたときにキーボードを隠す(name)
+        // フォーカスが外れたときにバリデーションを行う(name)
         nameEditText?.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
+                // nameEditText以外をタップでキーボードを隠す
                 inputMethodManager?.hideSoftInputFromWindow(
                     nameEditText.windowToken,
                     InputMethodManager.HIDE_NOT_ALWAYS
                 )
+
+                val name = nameEditText.text.toString()
+                if (!isValidName(name)) {
+                    // nameの要件を満たしていないことを表示
+                    nameEditText.error = activity.getString(R.string.check_name)
+                }
             }
         }
 
@@ -87,11 +100,12 @@ object ValidationUtils {
         // リアルタイムに値を取得できるTextWatcherを使用
         return object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
+                val name = nameEditText?.text.toString()
                 val email = emailEditText.text.toString()
                 val password = passwordEditText.text.toString()
 
                 // メールアドレスとパスワードが正しい場合、ボタンを有効化
-                if (isValidEmail(email) && isValidPassword(password)) {
+                if (isValidName(name) && isValidEmail(email) && isValidPassword(password)) {
                     button.isEnabled = true
                     button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.enabled_button_color)
                 } else {

@@ -15,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SigninActivity : AppCompatActivity() {
+class SigninActivity: AppCompatActivity() {
     private lateinit var binding: ActivitySigninBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

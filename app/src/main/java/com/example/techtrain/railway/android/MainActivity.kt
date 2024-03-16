@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
     //ViewBindingを使うための変数を定義
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

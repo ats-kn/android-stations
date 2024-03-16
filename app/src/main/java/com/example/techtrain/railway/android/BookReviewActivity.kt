@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.example.techtrain.railway.android.databinding.ActivityBookreviewBinding
 
 class BookReviewActivity: AppCompatActivity(){
@@ -21,14 +20,21 @@ class BookReviewActivity: AppCompatActivity(){
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // ログアウトボタンを表示する
-        menuInflater.inflate(R.menu.menu_logout, menu)
+        // ツールバーにメニューを表示
+        menuInflater.inflate(R.menu.menu_bookreview, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // ログアウトボタンが押された時の処理
         return when (item.itemId) {
+            R.id.action_UserInfoEdit -> {
+                // UserInfoEditorActivityに遷移
+                val intent = Intent(this@BookReviewActivity, UserInfoEditorActivity::class.java)
+                startActivity(intent)
+                true
+            }
+
             // トークンを削除
             R.id.action_logout -> {
                 val dataStore = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE)
@@ -41,7 +47,7 @@ class BookReviewActivity: AppCompatActivity(){
                 startActivity(intent)
                 true
             }
-            else -> false
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
