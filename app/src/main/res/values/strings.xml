@@ -17,4 +17,5 @@
     <string name="validation_password">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$</string>
     <string name="preference">Preference</string>
     <string name="token_key">token_key</string>
+    <string name="logout">Logout</string>
 </resources>
