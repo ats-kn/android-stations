@@ -11,7 +11,7 @@
         tools:context=".UserInfoEditorActivity">
 
     <EditText
-            android:id="@+id/editTextNameEdit"
+            android:id="@+id/editTextUpdateName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -33,7 +33,7 @@
             android:minHeight="48dp"
             android:text="@string/user_info_edit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNameEdit"
+            app:layout_constraintTop_toBottomOf="@+id/editTextUpdateName"
             tools:layout_editor_absoluteX="124dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

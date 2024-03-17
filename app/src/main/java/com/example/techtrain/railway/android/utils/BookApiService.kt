@@ -9,7 +9,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 
 private const val BASE_URL =
     "https://railway.bookreview.techtrain.dev"
@@ -21,8 +23,8 @@ private val moshi = Moshi.Builder()
 
 //Retrofitのインスタンスを作成
 private val retrofit = Retrofit.Builder()
-    .baseUrl(BASE_URL) //ベースURLを指定
-    .addConverterFactory(MoshiConverterFactory.create(moshi)) //Moshiを使用してJSONをパース
+    .baseUrl(BASE_URL)
+    .addConverterFactory(MoshiConverterFactory.create(moshi))
     .build()
 
 //APIインターフェースの実体を作成
@@ -40,5 +42,9 @@ interface BookApiService {
 
     // ユーザー認証
     @POST("signin")
-    fun login(@Body login: User): Call<ResponseBody>//サーバからのレスポンスはResponseBodyとして受け取る
+    fun login(@Body login: User): Call<ResponseBody>
+
+    // ユーザー情報更新
+    @PUT("users")
+    fun updateUserInfo(@Header("Authorization") token: String, @Body user: User): Call<ResponseBody>
 }
