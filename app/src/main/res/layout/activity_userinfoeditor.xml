@@ -3,10 +3,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:context=".UserInfoEditorActivity">
 
     <EditText
-            android:id="@+id/editTextName"
+            android:id="@+id/editTextNameEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -16,6 +21,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="Autofill,MissingConstraints" />
+
+
+    <Button
+            android:id="@+id/UserInfoEditButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="116dp"
+            android:layout_marginBottom="244dp"
+            android:minHeight="48dp"
+            android:text="@string/user_info_edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNameEdit"
+            tools:layout_editor_absoluteX="124dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

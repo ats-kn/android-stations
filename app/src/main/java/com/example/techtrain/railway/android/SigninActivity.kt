@@ -31,9 +31,14 @@ class SigninActivity: AppCompatActivity() {
             binding.editTextName,
             binding.editTextEmail,
             binding.editTextPassword,
-            binding.signinButton
+            binding.signinButton,
+            isValidInput = { name, email, password ->
+                // name, email, passwordのバリデーション確認
+                ValidationUtils.isValidName(name) && ValidationUtils.isValidEmail(email) && ValidationUtils.isValidPassword(password)
+            }
         )
 
+        binding.editTextName.addTextChangedListener(textWatcher)
         binding.editTextEmail.addTextChangedListener(textWatcher)
         binding.editTextPassword.addTextChangedListener(textWatcher)
 
@@ -64,7 +69,7 @@ class SigninActivity: AppCompatActivity() {
                         // BookReviewActivityに遷移
                         val intent = Intent(this@SigninActivity, BookReviewActivity::class.java)
                         startActivity(intent)
-
+                        finish()
                     } else {
                         // サーバからのhttpエラーメッセージを取得
                         val errorMessage = response.errorBody()?.string()

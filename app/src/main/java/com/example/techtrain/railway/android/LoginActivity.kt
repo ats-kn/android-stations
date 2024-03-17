@@ -23,7 +23,18 @@ class LoginActivity: AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val textWatcher = ValidationUtils.createTextWatcher(this,null, binding.editTextEmail, binding.editTextPassword, binding.loginButton)
+        val textWatcher = ValidationUtils.createTextWatcher(
+            this,
+            null,
+            binding.editTextEmail,
+            binding.editTextPassword,
+            binding.loginButton,
+            isValidInput = { _, email, password ->
+                // emailとpasswordのバリデーション確認
+                ValidationUtils.isValidEmail(email) && ValidationUtils.isValidPassword(password)
+            }
+        )
+
         binding.editTextEmail.addTextChangedListener(textWatcher)
         binding.editTextPassword.addTextChangedListener(textWatcher)
 
@@ -51,7 +62,7 @@ class LoginActivity: AppCompatActivity() {
                         // BookReviewActivityに遷移
                         val intent = Intent(this@LoginActivity, BookReviewActivity::class.java)
                         startActivity(intent)
-
+                        finish()
                     } else {
                         // サーバからのhttpエラーメッセージを取得
                         val errorMessage = response.errorBody()?.string()

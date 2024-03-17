@@ -11,37 +11,19 @@ import androidx.core.content.ContextCompat.getSystemService
 import com.example.techtrain.railway.android.R
 
 object ValidationUtils {
-
     // 入力された値が正しいかどうかを判定しボタンを制御するTextWatcherを作成
     fun createTextWatcher(
         activity: AppCompatActivity,
         nameEditText: EditText?,
-        emailEditText: EditText,
-        passwordEditText: EditText,
-        button: Button
+        emailEditText: EditText?,
+        passwordEditText: EditText?,
+        button: Button,
+        isValidInput: (String, String, String) -> Boolean
     ): TextWatcher {
 
         // ボタンを無効化
         button.isEnabled = false
         button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.disabled_button_color)
-
-        // ユーザー名のバリデーション
-        // 3文字以上のユーザー名を許可
-        fun isValidName(name: String): Boolean {
-            return name.length >= 3
-        }
-
-        // メールアドレスのバリデーション
-        fun isValidEmail(email: String): Boolean {
-            val emailRegex = activity.getString(R.string.validation_email).toRegex()
-            return emailRegex.matches(email)
-        }
-
-        // パスワードのバリデーション
-        fun isValidPassword(password: String): Boolean {
-            val passwordRegex = activity.getString(R.string.validation_password).toRegex()
-            return passwordRegex.matches(password)
-        }
 
         // キーボードを隠すためのInputMethodManagerを取得
         val inputMethodManager = getSystemService(activity, InputMethodManager::class.java)
@@ -64,7 +46,7 @@ object ValidationUtils {
         }
 
         // フォーカスが外れたときにバリデーションを行う(email)
-        emailEditText.setOnFocusChangeListener { _, hasFocus ->
+        emailEditText?.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 // emailEditText以外をタップでキーボードを隠す
                 inputMethodManager?.hideSoftInputFromWindow(
@@ -81,7 +63,7 @@ object ValidationUtils {
         }
 
         // フォーカスが外れたときにバリデーションを行う(password)
-        passwordEditText.setOnFocusChangeListener { _, hasFocus ->
+        passwordEditText?.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 // passwordEditText以外をタップでキーボードを隠す
                 inputMethodManager?.hideSoftInputFromWindow(
@@ -101,22 +83,43 @@ object ValidationUtils {
         return object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val name = nameEditText?.text.toString()
-                val email = emailEditText.text.toString()
-                val password = passwordEditText.text.toString()
+                val email = emailEditText?.text.toString()
+                val password = passwordEditText?.text.toString()
 
-                // メールアドレスとパスワードが正しい場合、ボタンを有効化
-                if (isValidName(name) && isValidEmail(email) && isValidPassword(password)) {
+                // すべてのEditTextの値が正しい場合、ボタンを有効化
+                if (isValidInput(name, email, password)) {
                     button.isEnabled = true
                     button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.enabled_button_color)
                 } else {
                     button.isEnabled = false
                     button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.disabled_button_color)
                 }
+
             }
 
             // 以降のメソッドは使わないけど消せないので空実装
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
+    }
+
+    // ユーザー名のバリデーション
+    // 3文字以上のユーザー名を許可
+    fun isValidName(name: String): Boolean {
+        val nameRegex = Regex("^.{3,}$")
+        return nameRegex.matches(name)
+    }
+
+    // メールアドレスのバリデーション
+    fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex("^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.+[a-z]+")
+        return emailRegex.matches(email)
+    }
+
+    // パスワードのバリデーション
+    // 大文字、小文字、数字を含む8文字以上のパスワードを許可
+    fun isValidPassword(password: String): Boolean {
+        val passwordRegex = Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}\$")
+        return passwordRegex.matches(password)
     }
 }
