@@ -28,7 +28,7 @@ class GetBookDataActivity: AppCompatActivity() {
         val getBookData = service.getBookData()
 
         //enqueue(非同期通信)でデータを取得
-        getBookData.enqueue(object : Callback<List<Book>> {
+        getBookData.enqueue(object: Callback<List<Book>> {
             override fun onResponse(
                 call: Call<List<Book>>,
                 response: Response<List<Book>>

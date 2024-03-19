@@ -5,7 +5,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-    <!-- 要件：タイトル(Book.title)と詳細(Book.detail)を表示 -->
+    <!-- 要件：タイトル,詳細,レビュー、レビュワーを表示 -->
     <!-- 1アイテム分のレイアウトを設定 -->
 
     <TextView
@@ -19,6 +19,28 @@
             android:id="@+id/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/textview_label_review"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+    <TextView
+            android:id="@+id/review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+    <TextView
+            android:id="@+id/reviewer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:textSize="16sp" />
 
 </LinearLayout>

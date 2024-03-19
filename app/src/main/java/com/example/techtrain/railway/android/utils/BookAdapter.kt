@@ -1,5 +1,6 @@
 package com.example.techtrain.railway.android.utils
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -8,12 +9,14 @@ import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.BookItemBinding
 
 //List<Book>を受け取るBookAdapterクラスを作成
-class BookAdapter(private val books: List<Book>) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
+class BookAdapter(private val books: List<Book>): RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
     //ViewHolderの設定(複数回使用するレイアウトを保存)
-    class BookViewHolder(binding: BookItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class BookViewHolder(binding: BookItemBinding): RecyclerView.ViewHolder(binding.root) {
         val title: TextView = binding.title
         val detail: TextView = binding.detail
+        val review: TextView = binding.review
+        val reviewer: TextView = binding.reviewer
     }
 
     //ViewHolderにレイアウトを格納して返す役割
@@ -28,6 +31,8 @@ class BookAdapter(private val books: List<Book>) : RecyclerView.Adapter<BookAdap
         val book = books[position]
         holder.title.text = book.title
         holder.detail.text = book.detail
+        holder.review.text = book.review
+        holder.reviewer.text = book.reviewer
     }
 
     //データの数を返す

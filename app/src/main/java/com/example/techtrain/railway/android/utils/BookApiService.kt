@@ -36,6 +36,9 @@ interface BookApiService {
     @GET("public/books") //pathを指定
     fun getBookData(): Call<List<Book>>//受け取るデータクラスを指定
 
+    @GET("books")
+    fun getBookDataAuth(@Header("Authorization") token: String): Call<List<Book>>
+
     // ユーザー情報を登録
     @POST("users")
     fun signin(@Body user: User): Call<ResponseBody>//サーバからのレスポンスはResponseBodyとして受け取る

@@ -20,4 +20,6 @@
     <string name="User_Info_Editor">ユーザ情報編集</string>
     <string name="user_name_edit_editText_label">変更するユーザー名を入力してください</string>
     <string name="user_info_edit">ユーザ名を変更</string>
+    <string name="bookreview">BookReview</string>
+    <string name="textview_label_review">レビュー</string>
 </resources>
