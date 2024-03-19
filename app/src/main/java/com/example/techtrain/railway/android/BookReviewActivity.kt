@@ -60,8 +60,6 @@ class BookReviewActivity: AppCompatActivity(){
 
             //通信に失敗した場合
             override fun onFailure(call: Call<List<Book>>, t: Throwable) {
-                //エラーをログに表示
-                Log.d(getString(R.string.bookreview), "通信に失敗しました")
                 Log.d(getString(R.string.bookreview), t.message.toString())
             }
         })
