@@ -63,7 +63,6 @@ class BookReviewActivity: AppCompatActivity(){
                 Log.d(getString(R.string.bookreview), t.message.toString())
             }
         })
-
     }
 
     // ツールバーにメニューを表示
