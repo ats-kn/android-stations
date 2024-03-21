@@ -40,18 +40,18 @@ class BookReviewActivity: AppCompatActivity(){
                 if (response.isSuccessful) {
                     val data = response.body()
 
-                    //GETしたデータをRecyclerViewに表示
-                    runOnUiThread {
-                        binding.recyclerView.setHasFixedSize(true)
-                        binding.recyclerView.adapter = BookAdapter(data!!)
-                        binding.recyclerView.layoutManager = LinearLayoutManager(this@BookReviewActivity)
-                        val dividerItemDecoration = DividerItemDecoration(
-                            this@BookReviewActivity,
-                            RecyclerView.VERTICAL
-                        )
-                        binding.recyclerView.addItemDecoration(dividerItemDecoration)
-                    }
+                    // RecyclerViewの設定
+                    binding.recyclerView.setHasFixedSize(true)
+                    binding.recyclerView.adapter = BookAdapter(data!!)
+                    binding.recyclerView.layoutManager =
+                        LinearLayoutManager(this@BookReviewActivity)
 
+                    // RecyclerViewに境界線を表示する処理
+                    val dividerItemDecoration = DividerItemDecoration(
+                        this@BookReviewActivity,
+                        RecyclerView.VERTICAL
+                    )
+                    binding.recyclerView.addItemDecoration(dividerItemDecoration)
                 } else {
                     //httpステータスコードが200番台以外の場合、ログを表示
                     Log.d(getString(R.string.bookreview), response.message())
