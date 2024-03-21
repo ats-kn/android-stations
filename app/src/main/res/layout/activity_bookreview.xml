@@ -24,6 +24,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_input_add"
+            app:tint="@color/white"
+            app:backgroundTint="@color/purple_500"
             tools:ignore="SpeakableTextPresentCheck" />
 
 
