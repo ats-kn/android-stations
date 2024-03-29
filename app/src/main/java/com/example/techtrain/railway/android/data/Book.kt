@@ -6,5 +6,5 @@ data class Book(
     val url: String,
     val detail: String,
     val review: String,
-    val reviewer: String
+    val reviewer: String,
 )

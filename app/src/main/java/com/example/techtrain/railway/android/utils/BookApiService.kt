@@ -16,38 +16,49 @@ import retrofit2.http.PUT
 private const val BASE_URL =
     "https://railway.bookreview.techtrain.dev"
 
-//Moshiのインスタンスを作成
-private val moshi = Moshi.Builder()
-    .add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
-    .build()
+// Moshiのインスタンスを作成
+private val moshi =
+    Moshi.Builder()
+        .add(com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory())
+        .build()
 
-//Retrofitのインスタンスを作成
-private val retrofit = Retrofit.Builder()
-    .baseUrl(BASE_URL)
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .build()
+// Retrofitのインスタンスを作成
+private val retrofit =
+    Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
 
-//APIインターフェースの実体を作成
+// APIインターフェースの実体を作成
 val service: BookApiService = retrofit.create(BookApiService::class.java)
 
-//BookApiServiceインターフェイス(インターフェイス：複数のクラスで使用できる共通メソッド)を作成
+// BookApiServiceインターフェイス(インターフェイス：複数のクラスで使用できる共通メソッド)を作成
 interface BookApiService {
     // Book情報を取得
-    @GET("public/books") //pathを指定
-    fun getBookData(): Call<List<Book>>//受け取るデータクラスを指定
+    @GET("public/books") // pathを指定
+    fun getBookData(): Call<List<Book>> // 受け取るデータクラスを指定
 
     @GET("books")
-    fun getBookDataAuth(@Header("Authorization") token: String): Call<List<Book>>
+    fun getBookDataAuth(
+        @Header("Authorization") token: String,
+    ): Call<List<Book>>
 
     // ユーザー情報を登録
     @POST("users")
-    fun signin(@Body user: User): Call<ResponseBody>//サーバからのレスポンスはResponseBodyとして受け取る
+    fun signin(
+        @Body user: User,
+    ): Call<ResponseBody> // サーバからのレスポンスはResponseBodyとして受け取る
 
     // ユーザー認証
     @POST("signin")
-    fun login(@Body login: User): Call<ResponseBody>
+    fun login(
+        @Body login: User,
+    ): Call<ResponseBody>
 
     // ユーザー情報更新
     @PUT("users")
-    fun updateUserInfo(@Header("Authorization") token: String, @Body user: User): Call<ResponseBody>
+    fun updateUserInfo(
+        @Header("Authorization") token: String,
+        @Body user: User,
+    ): Call<ResponseBody>
 }

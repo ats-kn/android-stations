@@ -19,50 +19,69 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BookReviewActivity: AppCompatActivity(){
+class BookReviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookreviewBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Bindingの設定
+        // Bindingの設定
         binding = ActivityBookreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val token = getSharedPreferences(getString(R.string.preference), MODE_PRIVATE).getString(getString(R.string.token_key), null)
+        // 書籍一覧情報のGETリクエスト
+        val token =
+            getSharedPreferences(
+                getString(R.string.preference),
+                MODE_PRIVATE,
+            ).getString(getString(R.string.token_key), null)
         val getBookData = service.getBookDataAuth("Bearer $token")
 
-        getBookData.enqueue(object: Callback<List<Book>> {
-            override fun onResponse(
-                call: Call<List<Book>>,
-                response: Response<List<Book>>
-            ) {
-                binding.progressBar.visibility = View.GONE
+        getBookData.enqueue(
+            object : Callback<List<Book>> {
+                override fun onResponse(
+                    call: Call<List<Book>>,
+                    response: Response<List<Book>>,
+                ) {
+                    binding.progressBar.visibility = View.GONE
 
-                if (response.isSuccessful) {
-                    val data = response.body()
+                    if (response.isSuccessful) {
+                        val data = response.body()
 
-                    // RecyclerViewの設定
-                    binding.recyclerView.setHasFixedSize(true)
-                    binding.recyclerView.adapter = BookAdapter(data!!)
-                    binding.recyclerView.layoutManager =
-                        LinearLayoutManager(this@BookReviewActivity)
+                        // RecyclerViewの設定
+                        binding.recyclerView.setHasFixedSize(true)
+                        binding.recyclerView.adapter = BookAdapter(data!!)
+                        binding.recyclerView.layoutManager =
+                            LinearLayoutManager(this@BookReviewActivity)
 
-                    // RecyclerViewに境界線を表示する処理
-                    val dividerItemDecoration = DividerItemDecoration(
-                        this@BookReviewActivity,
-                        RecyclerView.VERTICAL
-                    )
-                    binding.recyclerView.addItemDecoration(dividerItemDecoration)
-                } else {
-                    //httpステータスコードが200番台以外の場合、ログを表示
-                    Log.d(getString(R.string.bookreview), response.message())
+                        // RecyclerViewに境界線を表示する処理
+                        val dividerItemDecoration =
+                            DividerItemDecoration(
+                                this@BookReviewActivity,
+                                RecyclerView.VERTICAL,
+                            )
+                        binding.recyclerView.addItemDecoration(dividerItemDecoration)
+                    } else {
+                        // httpステータスコードが200番台以外の場合、ログを表示
+                        Log.d(getString(R.string.bookreview), response.message())
+                    }
+                }
+
+                // 通信に失敗した場合
+                override fun onFailure(
+                    call: Call<List<Book>>,
+                    t: Throwable,
+                ) {
+                    Log.d(getString(R.string.bookreview), t.message.toString())
                 }
             }
+        )
 
-            //通信に失敗した場合
-            override fun onFailure(call: Call<List<Book>>, t: Throwable) {
-                Log.d(getString(R.string.bookreview), t.message.toString())
-            }
-        })
+        //フローティングアクションボタンの設定
+        binding.fab.setOnClickListener {
+            // ReviewPostActivityに遷移
+            val intent = Intent(this@BookReviewActivity, ReviewPostActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     // ツールバーにメニューを表示
@@ -85,7 +104,8 @@ class BookReviewActivity: AppCompatActivity(){
 
             // ログアウト処理
             R.id.action_logout -> {
-                val dataStore = getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE)
+                val dataStore =
+                    getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE)
                 val editor = dataStore.edit()
                 editor.clear()
                 editor.apply()

@@ -15,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity: AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,17 +23,18 @@ class LoginActivity: AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val textWatcher = ValidationUtils.createTextWatcher(
-            this,
-            null,
-            binding.editTextEmail,
-            binding.editTextPassword,
-            binding.loginButton,
-            isValidInput = { _, email, password ->
-                // emailとpasswordのバリデーション確認
-                ValidationUtils.isValidEmail(email) && ValidationUtils.isValidPassword(password)
-            }
-        )
+        val textWatcher =
+            ValidationUtils.createTextWatcher(
+                this,
+                null,
+                binding.editTextEmail,
+                binding.editTextPassword,
+                binding.loginButton,
+                isValidInput = { _, email, password ->
+                    // emailとpasswordのバリデーション確認
+                    ValidationUtils.isValidEmail(email) && ValidationUtils.isValidPassword(password)
+                },
+            )
 
         binding.editTextEmail.addTextChangedListener(textWatcher)
         binding.editTextPassword.addTextChangedListener(textWatcher)
@@ -44,37 +45,63 @@ class LoginActivity: AppCompatActivity() {
             val user = User("", email, password)
             val login = service.login(user)
 
-            login.enqueue(object : Callback<ResponseBody> {
-                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                    if (response.isSuccessful) {
-                        Log.d("LoginActivity", "ログインに成功しました")
+            login.enqueue(
+                object : Callback<ResponseBody> {
+                    override fun onResponse(
+                        call: Call<ResponseBody>,
+                        response: Response<ResponseBody>,
+                    ) {
+                        if (response.isSuccessful) {
+                            Log.d("LoginActivity", "ログインに成功しました")
 
-                        // サインインに成功したらトークンを取得
-                        val token = response.body()?.string()?.substringAfter("token\":\"")?.substringBefore("\"")
-                        // SharedPreferencesを使用してトークンを保存
-                        val sharedPref = getSharedPreferences(
-                            getString(R.string.preference), Context.MODE_PRIVATE)
-                        with (sharedPref.edit()) {
-                            putString(getString(R.string.token_key), token)
-                            apply()
+                            // サインインに成功したらトークンを取得
+                            val token =
+                                response.body()?.string()?.substringAfter(
+                                    "token\":\"",
+                                )?.substringBefore("\"")
+                            // SharedPreferencesを使用してトークンを保存
+                            val sharedPref =
+                                getSharedPreferences(
+                                    getString(R.string.preference),
+                                    Context.MODE_PRIVATE,
+                                )
+                            with(sharedPref.edit()) {
+                                putString(getString(R.string.token_key), token)
+                                apply()
+                            }
+
+                            // BookReviewActivityに遷移
+                            val intent = Intent(this@LoginActivity, BookReviewActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            // サーバからのhttpエラーメッセージを取得
+                            val errorMessage = response.errorBody()?.string()
+                            // errorMessageの中からErrorMessageJPを抜き出す
+                            val errorMessageJP =
+                                errorMessage?.substringAfter(
+                                    "ErrorMessageJP\":\"",
+                                )?.substringBefore("\"")
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Error: $errorMessageJP",
+                                Toast.LENGTH_SHORT,
+                            ).show()
                         }
-
-                        // BookReviewActivityに遷移
-                        val intent = Intent(this@LoginActivity, BookReviewActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        // サーバからのhttpエラーメッセージを取得
-                        val errorMessage = response.errorBody()?.string()
-                        // errorMessageの中からErrorMessageJPを抜き出す
-                        val errorMessageJP = errorMessage?.substringAfter("ErrorMessageJP\":\"")?.substringBefore("\"")
-                        Toast.makeText(this@LoginActivity, "Error: $errorMessageJP", Toast.LENGTH_SHORT).show()
                     }
-                }
-                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
+
+                    override fun onFailure(
+                        call: Call<ResponseBody>,
+                        t: Throwable,
+                    ) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Error: ${t.message}",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                },
+            )
         }
     }
 }

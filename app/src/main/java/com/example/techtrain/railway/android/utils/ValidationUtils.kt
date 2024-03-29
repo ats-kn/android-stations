@@ -18,12 +18,15 @@ object ValidationUtils {
         emailEditText: EditText?,
         passwordEditText: EditText?,
         button: Button,
-        isValidInput: (String, String, String) -> Boolean
+        isValidInput: (String, String, String) -> Boolean,
     ): TextWatcher {
-
         // ボタンを無効化
         button.isEnabled = false
-        button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.disabled_button_color)
+        button.backgroundTintList =
+            ContextCompat.getColorStateList(
+                activity,
+                R.color.disabled_button_color,
+            )
 
         // キーボードを隠すためのInputMethodManagerを取得
         val inputMethodManager = getSystemService(activity, InputMethodManager::class.java)
@@ -34,7 +37,7 @@ object ValidationUtils {
                 // nameEditText以外をタップでキーボードを隠す
                 inputMethodManager?.hideSoftInputFromWindow(
                     nameEditText.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS
+                    InputMethodManager.HIDE_NOT_ALWAYS,
                 )
 
                 val name = nameEditText.text.toString()
@@ -51,7 +54,7 @@ object ValidationUtils {
                 // emailEditText以外をタップでキーボードを隠す
                 inputMethodManager?.hideSoftInputFromWindow(
                     emailEditText.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS
+                    InputMethodManager.HIDE_NOT_ALWAYS,
                 )
 
                 val email = emailEditText.text.toString()
@@ -68,7 +71,7 @@ object ValidationUtils {
                 // passwordEditText以外をタップでキーボードを隠す
                 inputMethodManager?.hideSoftInputFromWindow(
                     passwordEditText.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS
+                    InputMethodManager.HIDE_NOT_ALWAYS,
                 )
 
                 val password = passwordEditText.text.toString()
@@ -89,17 +92,35 @@ object ValidationUtils {
                 // すべてのEditTextの値が正しい場合、ボタンを有効化
                 if (isValidInput(name, email, password)) {
                     button.isEnabled = true
-                    button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.enabled_button_color)
+                    button.backgroundTintList =
+                        ContextCompat.getColorStateList(
+                            activity,
+                            R.color.enabled_button_color,
+                        )
                 } else {
                     button.isEnabled = false
-                    button.backgroundTintList = ContextCompat.getColorStateList(activity, R.color.disabled_button_color)
+                    button.backgroundTintList =
+                        ContextCompat.getColorStateList(
+                            activity,
+                            R.color.disabled_button_color,
+                        )
                 }
-
             }
 
             // 以降のメソッドは使わないけど消せないので空実装
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int,
+            ) {}
+
+            override fun onTextChanged(
+                s: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int,
+            ) {}
         }
     }
 
