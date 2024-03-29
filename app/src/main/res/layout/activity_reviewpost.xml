@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:padding="8dp"
+        tools:context=".ReviewPostActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/book_title_editText_label"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="20dp"
+            android:minHeight="48dp"
+            tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+            android:id="@+id/editTextUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/book_url_editText_label"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="20dp"
+            android:minHeight="48dp"
+            tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+            android:id="@+id/editTextDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/book_detail_editText_label"
+            android:layout_marginBottom="20dp"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"/>
+
+    <EditText
+            android:id="@+id/editTextReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/book_review_editText_label"
+            android:layout_marginBottom="20dp"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"/>
+
+    <Button
+            android:id="@+id/signinButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="116dp"
+            android:layout_marginEnd="116dp"
+            android:minHeight="48dp"
+            android:text="@string/post_button_label"/>
+
+</LinearLayout>

@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.techtrain.railway.android.R
 
-object ValidationUtils {
+object UserInfoValidation {
     // 入力された値が正しいかどうかを判定しボタンを制御するTextWatcherを作成
     fun createTextWatcher(
         activity: AppCompatActivity,

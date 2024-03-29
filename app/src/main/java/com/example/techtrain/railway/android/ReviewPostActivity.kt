@@ -9,6 +9,7 @@ class ReviewPostActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Bindingの設定
         binding = ActivityReviewpostBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }

@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.data.User
 import com.example.techtrain.railway.android.databinding.ActivityLoginBinding
-import com.example.techtrain.railway.android.utils.ValidationUtils
+import com.example.techtrain.railway.android.utils.UserInfoValidation
 import com.example.techtrain.railway.android.utils.service
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val textWatcher =
-            ValidationUtils.createTextWatcher(
+            UserInfoValidation.createTextWatcher(
                 this,
                 null,
                 binding.editTextEmail,
@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.loginButton,
                 isValidInput = { _, email, password ->
                     // emailとpasswordのバリデーション確認
-                    ValidationUtils.isValidEmail(email) && ValidationUtils.isValidPassword(password)
+                    UserInfoValidation.isValidEmail(email) && UserInfoValidation.isValidPassword(password)
                 },
             )
 

@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.data.User
 import com.example.techtrain.railway.android.databinding.ActivityUserinfoeditorBinding
-import com.example.techtrain.railway.android.utils.ValidationUtils
+import com.example.techtrain.railway.android.utils.UserInfoValidation
 import com.example.techtrain.railway.android.utils.service
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -24,7 +24,7 @@ class UserInfoEditorActivity : AppCompatActivity() {
         binding.editTextUpdateName
 
         val textWatcher =
-            ValidationUtils.createTextWatcher(
+            UserInfoValidation.createTextWatcher(
                 this,
                 binding.editTextUpdateName,
                 null,
@@ -32,7 +32,7 @@ class UserInfoEditorActivity : AppCompatActivity() {
                 binding.UserInfoEditButton,
                 isValidInput = { name, _, _ ->
                     // nameのバリデーション確認
-                    ValidationUtils.isValidName(name)
+                    UserInfoValidation.isValidName(name)
                 },
             )
 

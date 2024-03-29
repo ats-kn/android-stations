@@ -22,4 +22,9 @@
     <string name="user_info_edit">ユーザ名を変更</string>
     <string name="bookreview">BookReview</string>
     <string name="textview_label_review">レビュー</string>
+    <string name="book_title_editText_label">タイトルを入力してください</string>
+    <string name="book_url_editText_label">URLを入力してください</string>
+    <string name="book_detail_editText_label">本の概要を入力してください</string>
+    <string name="book_review_editText_label">本の感想を入力してください</string>
+    <string name="post_button_label">送信</string>
 </resources>
