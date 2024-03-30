@@ -27,4 +27,8 @@
     <string name="book_detail_editText_label">本の概要を入力してください</string>
     <string name="book_review_editText_label">本の感想を入力してください</string>
     <string name="post_button_label">送信</string>
+    <string name="check_title">1文字以上のタイトルを入力してください</string>
+    <string name="check_url">https:// または http:// で始まるURLを入力してください</string>
+    <string name="check_detail">1文字以上の概要を入力してください</string>
+    <string name="check_review">1文字以上の感想を入力してください</string>
 </resources>

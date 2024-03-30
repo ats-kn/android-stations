@@ -126,20 +126,20 @@ object UserInfoValidation {
 
     // ユーザー名のバリデーション
     // 3文字以上のユーザー名を許可
-    fun isValidName(name: String): Boolean {
+    private fun isValidName(name: String): Boolean {
         val nameRegex = Regex("^.{3,}$")
         return nameRegex.matches(name)
     }
 
     // メールアドレスのバリデーション
-    fun isValidEmail(email: String): Boolean {
+    private fun isValidEmail(email: String): Boolean {
         val emailRegex = Regex("^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.+[a-z]+")
         return emailRegex.matches(email)
     }
 
     // パスワードのバリデーション
     // 大文字、小文字、数字を含む8文字以上のパスワードを許可
-    fun isValidPassword(password: String): Boolean {
+    private fun isValidPassword(password: String): Boolean {
         val passwordRegex = Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}\$")
         return passwordRegex.matches(password)
     }
