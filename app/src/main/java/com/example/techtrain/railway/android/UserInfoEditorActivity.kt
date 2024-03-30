@@ -59,9 +59,10 @@ class UserInfoEditorActivity : AppCompatActivity() {
                             // ユーザー情報の更新に成功したらトーストを表示
                             Toast.makeText(
                                 applicationContext,
-                                name + "にユーザー名を変更しました",
+                                name + getString(R.string.edit_user_info_success),
                                 Toast.LENGTH_SHORT,
                             ).show()
+                            finish()
                         } else {
                             // ユーザー情報の更新に失敗したらエラーメッセージをトーストで表示
                             val errorMessageJp =

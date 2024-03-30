@@ -52,7 +52,14 @@ interface BookApiService {
     // ユーザー認証
     @POST("signin")
     fun login(
-        @Body login: User,
+        @Body user: User,
+    ): Call<ResponseBody>
+
+    // レビュー投稿
+    @POST("books")
+    fun postReview(
+        @Header("Authorization") token: String,
+        @Body book: Book
     ): Call<ResponseBody>
 
     // ユーザー情報更新

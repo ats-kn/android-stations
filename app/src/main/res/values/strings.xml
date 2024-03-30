@@ -31,4 +31,6 @@
     <string name="check_url">https:// または http:// で始まるURLを入力してください</string>
     <string name="check_detail">1文字以上の概要を入力してください</string>
     <string name="check_review">1文字以上の感想を入力してください</string>
+    <string name="edit_user_info_success">にユーザー名を変更しました</string>
+    <string name="post_review_success">レビューの投稿に成功しました</string>
 </resources>

@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/book_title_editText_label"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:layout_marginBottom="20dp"
             android:minHeight="48dp"
             tools:layout_editor_absoluteX="8dp" />
@@ -35,8 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/book_detail_editText_label"
+            android:inputType="text"
             android:layout_marginBottom="20dp"
-            android:inputType="textEmailAddress"
             android:minHeight="48dp"/>
 
     <EditText
@@ -44,12 +44,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/book_review_editText_label"
+            android:inputType="text"
             android:layout_marginBottom="20dp"
-            android:inputType="textEmailAddress"
             android:minHeight="48dp"/>
 
     <Button
-            android:id="@+id/signinButton"
+            android:id="@+id/postButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="116dp"
