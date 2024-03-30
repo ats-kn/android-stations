@@ -1,6 +1,9 @@
 package com.example.techtrain.railway.android
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -62,7 +65,13 @@ class UserInfoEditorActivity : AppCompatActivity() {
                                 name + getString(R.string.edit_user_info_success),
                                 Toast.LENGTH_SHORT,
                             ).show()
-                            finish()
+
+                            // Handlerを使って画面遷移を遅らせる
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                // BookReviewActivityに遷移
+                                val intent = Intent(this@UserInfoEditorActivity, BookReviewActivity::class.java)
+                                startActivity(intent)
+                            }, 500)
                         } else {
                             // ユーザー情報の更新に失敗したらエラーメッセージをトーストで表示
                             val errorMessageJp =

@@ -71,12 +71,12 @@ class ReviewPostActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT,
                             ).show()
 
-                            // Handlerを使用して遅延を入れる
+                            // Handlerを使用して遅延を入れる, これによって新規で投稿したレビューが表示される
                             Handler(Looper.getMainLooper()).postDelayed({
                                 // BookReviewActivityに遷移
                                 val intent = Intent(this@ReviewPostActivity, BookReviewActivity::class.java)
                                 startActivity(intent)
-                            }, 1000)  // 1000ミリ秒（1秒）後に遷移
+                            }, 500)  // 500ミリ秒（0.5秒) 後に遷移
                         } else {
                             // レビューの投稿に失敗したらトーストを表示
                             val errorMessageJp =
