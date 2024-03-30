@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val textWatcher =
-            UserInfoValidation.createTextWatcher(
+            UserInfoValidation.createTextWatcherUserInfo(
                 this,
                 null,
                 binding.editTextEmail,

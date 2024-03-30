@@ -12,7 +12,7 @@ import com.example.techtrain.railway.android.R
 
 object UserInfoValidation {
     // 入力された値が正しいかどうかを判定しボタンを制御するTextWatcherを作成
-    fun createTextWatcher(
+    fun createTextWatcherUserInfo(
         activity: AppCompatActivity,
         nameEditText: EditText?,
         emailEditText: EditText?,

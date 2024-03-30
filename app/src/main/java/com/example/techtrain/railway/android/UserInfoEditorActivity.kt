@@ -24,7 +24,7 @@ class UserInfoEditorActivity : AppCompatActivity() {
         binding.editTextUpdateName
 
         val textWatcher =
-            UserInfoValidation.createTextWatcher(
+            UserInfoValidation.createTextWatcherUserInfo(
                 this,
                 binding.editTextUpdateName,
                 null,
@@ -33,7 +33,7 @@ class UserInfoEditorActivity : AppCompatActivity() {
                 isValidInput = { name, _, _ ->
                     // nameのバリデーション確認
                     UserInfoValidation.isValidName(name)
-                },
+                }
             )
 
         binding.editTextUpdateName.addTextChangedListener(textWatcher)
@@ -82,7 +82,7 @@ class UserInfoEditorActivity : AppCompatActivity() {
                     ) {
                         Log.d("UserInfoEditorActivity", "ユーザー情報の更新に失敗しました")
                     }
-                },
+                }
             )
         }
     }

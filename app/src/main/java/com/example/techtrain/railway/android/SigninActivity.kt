@@ -27,7 +27,7 @@ class SigninActivity : AppCompatActivity() {
 
         // バリテーションのためのTextWatcherを設定
         val textWatcher =
-            UserInfoValidation.createTextWatcher(
+            UserInfoValidation.createTextWatcherUserInfo(
                 this,
                 binding.editTextName,
                 binding.editTextEmail,
