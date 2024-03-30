@@ -17,8 +17,7 @@ object BookReviewValidation {
         urlEditText: EditText?,
         detailEditText: EditText?,
         reviewEditText: EditText?,
-        button: Button,
-        isValidInput: (String, String, String, String) -> Boolean,
+        button: Button
     ): TextWatcher {
         // ボタンを無効化
         button.isEnabled = false
@@ -109,7 +108,7 @@ object BookReviewValidation {
                 val review = reviewEditText?.text.toString()
 
                 // すべてのEditTextの値が正しい場合、ボタンを有効化
-                if (isValidInput(title, url, detail, review)) {
+                if ( isValidTitle(title) && isValidUrl(url) && isValidDetail(detail) && isValidReview(review)){
                     button.isEnabled = true
                     button.backgroundTintList =
                         ContextCompat.getColorStateList(

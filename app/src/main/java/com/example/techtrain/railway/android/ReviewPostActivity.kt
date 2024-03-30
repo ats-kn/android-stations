@@ -12,5 +12,8 @@ class ReviewPostActivity : AppCompatActivity() {
         // Bindingの設定
         binding = ActivityReviewpostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // textWatcherの設定
+
     }
 }
