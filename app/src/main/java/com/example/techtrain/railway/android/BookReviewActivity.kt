@@ -42,19 +42,34 @@ class BookReviewActivity : AppCompatActivity() {
                     call: Call<List<Book>>,
                     response: Response<List<Book>>,
                 ) {
-                    binding.progressBar.visibility = View.GONE
-
                     if (response.isSuccessful) {
                         val data = response.body()
 
+                        // プログレスバーを非表示
+                        binding.progressBar.visibility = View.GONE
                         // RecyclerViewの設定
                         binding.recyclerView.setHasFixedSize(true)
-                        binding.recyclerView.adapter = BookAdapter(data!!) { bookId ->
-                            // BookDetailActivityに遷移
-                            val intent = Intent(this@BookReviewActivity, BookDetailActivity::class.java)
-                            intent.putExtra(getString(R.string.bookid), bookId)
-                            startActivity(intent)
+                        binding.recyclerView.adapter = BookAdapter(data!!) { bookId, isMine->
+                            // isMineがtrueの場合、BookReviewEditorActivityに遷移
+                            if (isMine == true) {
+                                val intent = Intent(
+                                    this@BookReviewActivity,
+                                    BookReviewEditorActivity::class.java,
+                                )
+                                intent.putExtra(getString(R.string.bookid), bookId)
+                                startActivity(intent)
+                            } else {
+                                // BookReviewViewerActivityに遷移
+                                val intent = Intent(
+                                    this@BookReviewActivity,
+                                    BookDetailActivity::class.java,
+                                )
+                                intent.putExtra(getString(R.string.bookid), bookId)
+                                startActivity(intent)
+                            }
                         }
+
+                        // RecyclerViewのレイアウトマネージャーを設定
                         binding.recyclerView.layoutManager =
                             LinearLayoutManager(this@BookReviewActivity)
 

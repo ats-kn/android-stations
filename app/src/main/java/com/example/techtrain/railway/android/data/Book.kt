@@ -7,4 +7,5 @@ data class Book(
     val detail: String,
     val review: String,
     val reviewer: String,
+    val isMine: Boolean? = null
 )

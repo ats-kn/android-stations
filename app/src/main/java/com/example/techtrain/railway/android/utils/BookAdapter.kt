@@ -10,7 +10,7 @@ import com.example.techtrain.railway.android.databinding.BookItemBinding
 // List<Book>を受け取るBookAdapterクラスを作成
 class BookAdapter(
     private val books: List<Book>,
-    private val onItemClicked: (String) -> Unit
+    private val onItemClicked: (String, Boolean?) -> Unit,
 ) : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
     // ViewHolderの設定(複数回使用するレイアウトを保存)
     class BookViewHolder(binding: BookItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -43,8 +43,8 @@ class BookAdapter(
 
         // クリック時の処理
         holder.itemView.setOnClickListener {
-            // クリックされたアイテムの情報を取得
-            onItemClicked(book.id)
+            // book.idを引数にしてonItemClickedを呼び出す
+            onItemClicked(book.id, book.isMine)
         }
     }
 

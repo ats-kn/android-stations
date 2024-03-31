@@ -35,9 +35,6 @@ val service: BookApiService = retrofit.create(BookApiService::class.java)
 // BookApiServiceインターフェイス(インターフェイス：複数のクラスで使用できる共通メソッド)を作成
 interface BookApiService {
     // Book情報を取得
-    @GET("public/books") // pathを指定
-    fun getBookData(): Call<List<Book>> // 受け取るデータクラスを指定
-
     @GET("books")
     fun getBookDataAuth(
         @Header("Authorization") token: String,
