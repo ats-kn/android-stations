@@ -33,4 +33,6 @@
     <string name="check_review">1文字以上の感想を入力してください</string>
     <string name="edit_user_info_success">にユーザー名を変更しました</string>
     <string name="post_review_success">レビューの投稿に成功しました</string>
+    <string name="bookid">bookId</string>
+    <string name="textview_label_url">URL</string>
 </resources>

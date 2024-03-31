@@ -49,7 +49,12 @@ class BookReviewActivity : AppCompatActivity() {
 
                         // RecyclerViewの設定
                         binding.recyclerView.setHasFixedSize(true)
-                        binding.recyclerView.adapter = BookAdapter(data!!)
+                        binding.recyclerView.adapter = BookAdapter(data!!) { bookId ->
+                            // BookDetailActivityに遷移
+                            val intent = Intent(this@BookReviewActivity, BookDetailActivity::class.java)
+                            intent.putExtra(getString(R.string.bookid), bookId)
+                            startActivity(intent)
+                        }
                         binding.recyclerView.layoutManager =
                             LinearLayoutManager(this@BookReviewActivity)
 
@@ -62,7 +67,7 @@ class BookReviewActivity : AppCompatActivity() {
                         binding.recyclerView.addItemDecoration(dividerItemDecoration)
                     } else {
                         // httpステータスコードが200番台以外の場合、ログを表示
-                        Log.d(getString(R.string.bookreview), response.message())
+                        Log.e(getString(R.string.bookreview), response.message())
                     }
                 }
 
@@ -71,7 +76,7 @@ class BookReviewActivity : AppCompatActivity() {
                     call: Call<List<Book>>,
                     t: Throwable,
                 ) {
-                    Log.d(getString(R.string.bookreview), t.message.toString())
+                    Log.e(getString(R.string.bookreview), t.message.toString())
                 }
             }
         )

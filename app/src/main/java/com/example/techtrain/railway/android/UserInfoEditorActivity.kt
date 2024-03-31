@@ -90,7 +90,7 @@ class UserInfoEditorActivity : AppCompatActivity() {
                         call: Call<ResponseBody>,
                         t: Throwable,
                     ) {
-                        Log.d("UserInfoEditorActivity", "ユーザー情報の更新に失敗しました")
+                        Log.e("UserInfoEditorActivity", "ユーザー情報の更新に失敗しました")
                     }
                 }
             )

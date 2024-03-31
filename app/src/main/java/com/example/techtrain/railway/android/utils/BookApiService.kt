@@ -43,6 +43,13 @@ interface BookApiService {
         @Header("Authorization") token: String,
     ): Call<List<Book>>
 
+    // Book詳細情報を取得
+    @GET("books/{id}")
+    fun getBookDetail(
+        @Header("Authorization") token: String,
+        @retrofit2.http.Path("id") id: String,
+    ): Call<Book>
+
     // ユーザー情報を登録
     @POST("users")
     fun signin(
