@@ -1,5 +1,6 @@
 package com.example.techtrain.railway.android
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -41,10 +42,19 @@ class BookDetailActivity : AppCompatActivity(){
                         val data = response.body()
                         // 本の詳細情報を表示
                         binding.bookTitle.text = data!!.title
+                        // URLに下線を追加
+                        binding.bookUrl.paint.isUnderlineText = true
                         binding.bookUrl.text = data.url
                         binding.bookDetail.text = data.detail
                         binding.bookReview.text = data.review
                         binding.bookReviewer.text = data.reviewer
+
+                        binding.bookUrl.setOnClickListener {
+                            // WebViewActivityに遷移
+                            val intent = Intent(this@BookDetailActivity, WebActivity::class.java)
+                            intent.putExtra("URL", binding.bookUrl.text.toString())
+                            startActivity(intent)
+                        }
 
                     }else{
                         Log.e("BookDetailActivity", "onResponse: ${response.errorBody()}")

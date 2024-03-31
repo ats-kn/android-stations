@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="disabled_button_color">#CCCCCC</color>
     <color name="enabled_button_color">#6200EE</color>
+    <color name="url_color">#0000ee</color>
 </resources>
