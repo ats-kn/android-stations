@@ -51,22 +51,14 @@ class BookReviewActivity : AppCompatActivity() {
                         binding.recyclerView.setHasFixedSize(true)
                         binding.recyclerView.adapter = BookAdapter(data!!) { bookId, isMine->
                             // isMineがtrueの場合、BookReviewEditorActivityに遷移
-                            if (isMine == true) {
-                                val intent = Intent(
-                                    this@BookReviewActivity,
-                                    BookReviewEditorActivity::class.java,
-                                )
-                                intent.putExtra(getString(R.string.bookid), bookId)
-                                startActivity(intent)
+                            val intent = if (isMine == true) {
+                                Intent(this@BookReviewActivity, BookReviewEditorActivity::class.java)
                             } else {
-                                // BookReviewViewerActivityに遷移
-                                val intent = Intent(
-                                    this@BookReviewActivity,
-                                    BookDetailActivity::class.java,
-                                )
-                                intent.putExtra(getString(R.string.bookid), bookId)
-                                startActivity(intent)
+                                // isMineがfalseの場合、BookDetailActivityに遷移
+                                Intent(this@BookReviewActivity, BookDetailActivity::class.java)
                             }
+                            intent.putExtra(getString(R.string.bookid), bookId)
+                            startActivity(intent)
                         }
 
                         // RecyclerViewのレイアウトマネージャーを設定

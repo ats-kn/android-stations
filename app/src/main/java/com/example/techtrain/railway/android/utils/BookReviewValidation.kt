@@ -17,11 +17,11 @@ object BookReviewValidation {
         urlEditText: EditText?,
         detailEditText: EditText?,
         reviewEditText: EditText?,
-        button: Button
+        button: Button?
     ): TextWatcher {
         // ボタンを無効化
-        button.isEnabled = false
-        button.backgroundTintList =
+        button?.isEnabled = false
+        button?.backgroundTintList =
             ContextCompat.getColorStateList(
                 activity,
                 R.color.disabled_button_color,
@@ -109,15 +109,15 @@ object BookReviewValidation {
 
                 // すべてのEditTextの値が正しい場合、ボタンを有効化
                 if ( isValidTitle(title) && isValidUrl(url) && isValidDetail(detail) && isValidReview(review)){
-                    button.isEnabled = true
-                    button.backgroundTintList =
+                    button?.isEnabled = true
+                    button?.backgroundTintList =
                         ContextCompat.getColorStateList(
                             activity,
                             R.color.enabled_button_color
                         )
                 } else {
-                    button.isEnabled = false
-                    button.backgroundTintList =
+                    button?.isEnabled = false
+                    button?.backgroundTintList =
                         ContextCompat.getColorStateList(
                             activity,
                             R.color.disabled_button_color,
