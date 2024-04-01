@@ -2,13 +2,13 @@ package com.example.techtrain.railway.android
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.techtrain.railway.android.databinding.ActivityWebBinding
+import com.example.techtrain.railway.android.databinding.ActivityWebviewBinding
 
-class WebActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityWebBinding
+class WebViewActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityWebviewBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityWebBinding.inflate(layoutInflater)
+        binding = ActivityWebviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // WebViewの設定

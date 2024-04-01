@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -127,6 +128,73 @@ class BookReviewActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+
+            // 更新処理（レビュー情報をGET）
+            R.id.action_update -> {
+                // 書籍一覧情報のGETリクエスト
+                val token =
+                    getSharedPreferences(
+                        getString(R.string.preference),
+                        MODE_PRIVATE,
+                    ).getString(getString(R.string.token_key), null)
+                val getBookData = service.getBookDataAuth("Bearer $token")
+
+                getBookData.enqueue(
+                    object : Callback<List<Book>> {
+                        override fun onResponse(
+                            call: Call<List<Book>>,
+                            response: Response<List<Book>>,
+                        ) {
+                            if (response.isSuccessful) {
+                                val data = response.body()
+
+                                // プログレスバーを非表示
+                                binding.progressBar.visibility = View.GONE
+                                // RecyclerViewの設定
+                                binding.recyclerView.setHasFixedSize(true)
+                                binding.recyclerView.adapter = BookAdapter(data!!) { bookId, isMine->
+                                    // isMineがtrueの場合、BookReviewEditorActivityに遷移
+                                    val intent = if (isMine == true) {
+                                        Intent(this@BookReviewActivity, BookReviewEditorActivity::class.java)
+                                    } else {
+                                        // isMineがfalseの場合、BookDetailActivityに遷移
+                                        Intent(this@BookReviewActivity, BookDetailActivity::class.java)
+                                    }
+                                    intent.putExtra(getString(R.string.bookid), bookId)
+                                    startActivity(intent)
+                                }
+
+                                // RecyclerViewのレイアウトマネージャーを設定
+                                binding.recyclerView.layoutManager =
+                                    LinearLayoutManager(this@BookReviewActivity)
+
+                                // RecyclerViewに境界線を表示する処理
+                                val dividerItemDecoration =
+                                    DividerItemDecoration(
+                                        this@BookReviewActivity,
+                                        RecyclerView.VERTICAL,
+                                    )
+                                binding.recyclerView.addItemDecoration(dividerItemDecoration)
+
+                                Toast.makeText(this@BookReviewActivity, "更新しました", Toast.LENGTH_SHORT).show()
+                            } else {
+                                // httpステータスコードが200番台以外の場合、ログを表示
+                                Toast.makeText(this@BookReviewActivity, response.message(), Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        // 通信に失敗した場合
+                        override fun onFailure(
+                            call: Call<List<Book>>,
+                            t: Throwable,
+                        ) {
+                            Toast.makeText(this@BookReviewActivity, t.message.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

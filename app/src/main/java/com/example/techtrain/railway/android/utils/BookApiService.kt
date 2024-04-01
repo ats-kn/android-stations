@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -71,5 +72,20 @@ interface BookApiService {
     fun updateUserInfo(
         @Header("Authorization") token: String,
         @Body user: User,
+    ): Call<ResponseBody>
+
+    // レビュー更新
+    @PUT("books/{id}")
+    fun updateReview(
+        @Header("Authorization") token: String,
+        @retrofit2.http.Path("id") id: String,
+        @Body book: Book,
+    ): Call<ResponseBody>
+
+    // レビュー削除
+    @DELETE("books/{id}")
+    fun deleteReview(
+        @Header("Authorization") token: String,
+        @retrofit2.http.Path("id") id: String,
     ): Call<ResponseBody>
 }

@@ -51,11 +51,10 @@ class BookDetailActivity : AppCompatActivity(){
 
                         binding.bookUrl.setOnClickListener {
                             // WebViewActivityに遷移
-                            val intent = Intent(this@BookDetailActivity, WebActivity::class.java)
+                            val intent = Intent(this@BookDetailActivity, WebViewActivity::class.java)
                             intent.putExtra("URL", binding.bookUrl.text.toString())
                             startActivity(intent)
                         }
-
                     }else{
                         Log.e("BookDetailActivity", "onResponse: ${response.errorBody()}")
                     }
