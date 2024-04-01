@@ -46,7 +46,7 @@ class ReviewPostActivity : AppCompatActivity() {
             val url = binding.editTextUrl.text.toString()
             val detail = binding.editTextDetail.text.toString()
             val review = binding.editTextReview.text.toString()
-            val book = Book("",title, url, detail, review, "")
+            val book = Book("",title, url, detail, review, "", null)
 
             // トークンの取得
             val token =
