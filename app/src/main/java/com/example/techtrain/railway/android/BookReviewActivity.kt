@@ -205,7 +205,7 @@ class BookReviewActivity : AppCompatActivity() {
                                 Toast.makeText(this@BookReviewActivity, "更新しました", Toast.LENGTH_SHORT).show()
                             } else {
                                 // httpステータスコードが200番台以外の場合、ログを表示
-                                Toast.makeText(this@BookReviewActivity, response.message(), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@BookReviewActivity, response.message().toString(), Toast.LENGTH_SHORT).show()
                             }
                         }
 
@@ -214,7 +214,7 @@ class BookReviewActivity : AppCompatActivity() {
                             call: Call<List<Book>>,
                             t: Throwable,
                         ) {
-                            Toast.makeText(this@BookReviewActivity, t.message.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@BookReviewActivity, getString(R.string.fail_login), Toast.LENGTH_SHORT).show()
                         }
                     }
                 )

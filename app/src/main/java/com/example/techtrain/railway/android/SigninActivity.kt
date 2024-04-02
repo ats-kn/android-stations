@@ -110,7 +110,7 @@ class SigninActivity : AppCompatActivity() {
                     ) {
                         Toast.makeText(
                             this@SigninActivity,
-                            "Error: ${t.message}",
+                            getString(R.string.fail_network),
                             Toast.LENGTH_SHORT,
                         ).show()
                     }

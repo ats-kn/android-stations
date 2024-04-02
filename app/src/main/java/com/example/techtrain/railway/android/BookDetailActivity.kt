@@ -62,7 +62,7 @@ class BookDetailActivity : AppCompatActivity(){
                     }
                 }
                 override fun onFailure(call: Call<Book>, t: Throwable) {
-                    Toast.makeText(this@BookDetailActivity, getString(R.string.fail_get_bookdetail), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BookDetailActivity, getString(R.string.fail_network), Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }

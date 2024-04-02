@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                                 )?.substringBefore("\"")
                             Toast.makeText(
                                 this@LoginActivity,
-                                "Error: $errorMessageJP",
+                                "$errorMessageJP",
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         Toast.makeText(
                             this@LoginActivity,
-                            "Error: ${t.message}",
+                            getString(R.string.fail_network),
                             Toast.LENGTH_SHORT,
                         ).show()
                     }

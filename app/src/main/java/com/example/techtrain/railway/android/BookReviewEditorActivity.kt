@@ -67,13 +67,14 @@ class BookReviewEditorActivity : AppCompatActivity(){
 
 
                     }else{
-                        Toast.makeText(this@BookReviewEditorActivity, "本の詳細情報の取得に失敗しました", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@BookReviewEditorActivity, getString(R.string.fail_get_bookdetail), Toast.LENGTH_SHORT).show()
                         finish()
                     }
                 }
 
                 override fun onFailure(call: Call<Book>, t: Throwable) {
-                    Toast.makeText(this@BookReviewEditorActivity, t.message.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BookReviewEditorActivity, getString(R.string.fail_network), Toast.LENGTH_SHORT).show()
+                    finish()
                 }
             }
         )
