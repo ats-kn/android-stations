@@ -2,8 +2,8 @@ package com.example.techtrain.railway.android
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.ActivityBookdetailBinding
@@ -56,11 +56,14 @@ class BookDetailActivity : AppCompatActivity(){
                             startActivity(intent)
                         }
                     }else{
-                        Log.e("BookDetailActivity", "onResponse: ${response.errorBody()}")
+                        Toast.makeText(this@BookDetailActivity,
+                            getString(R.string.fail_get_bookdetail), Toast.LENGTH_SHORT).show()
+                        finish()
                     }
                 }
                 override fun onFailure(call: Call<Book>, t: Throwable) {
-                    Log.e("BookDetailActivity", "onFailure: $t")
+                    Toast.makeText(this@BookDetailActivity, getString(R.string.fail_get_bookdetail), Toast.LENGTH_SHORT).show()
+                    finish()
                 }
             }
         )
