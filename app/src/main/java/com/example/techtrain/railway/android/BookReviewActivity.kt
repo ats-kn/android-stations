@@ -23,11 +23,45 @@ import retrofit2.Response
 class BookReviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookreviewBinding
 
+    // RecyclerViewの設定
+    private fun setupRecyclerView(data: List<Book>) {
+        // プログレスバーを非表示
+        binding.progressBar.visibility = View.GONE
+
+        // RecyclerViewの設定
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.adapter = BookAdapter(data) { bookId, isMine ->
+            // isMineがtrueの場合、BookReviewEditorActivityに遷移
+            val intent = if (isMine == true) {
+                Intent(this, BookReviewEditorActivity::class.java)
+            } else {
+                // isMineがfalseの場合、BookDetailActivityに遷移
+                Intent(this, BookDetailActivity::class.java)
+            }
+            intent.putExtra(getString(R.string.bookid), bookId)
+            startActivity(intent)
+        }
+
+        // RecyclerViewのレイアウトマネージャーを設定
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // RecyclerViewに境界線を表示する処理
+        val dividerItemDecoration = DividerItemDecoration(this, RecyclerView.VERTICAL)
+        binding.recyclerView.addItemDecoration(dividerItemDecoration)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Bindingの設定
         binding = ActivityBookreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //フローティングアクションボタンの設定
+        binding.fab.setOnClickListener {
+            // ReviewPostActivityに遷移
+            val intent = Intent(this@BookReviewActivity, ReviewPostActivity::class.java)
+            startActivity(intent)
+        }
 
         // Roomのインスタンスを取得
         val db = BookReviewDatabase.getDatabase(this)
@@ -56,71 +90,16 @@ class BookReviewActivity : AppCompatActivity() {
                         }.start()
 
                         runOnUiThread {
-                            // プログレスバーを非表示
-                            binding.progressBar.visibility = View.GONE
-
                             // RecyclerViewの設定
-                            binding.recyclerView.setHasFixedSize(true)
-                            binding.recyclerView.adapter = BookAdapter(data!!) { bookId, isMine ->
-                                // isMineがtrueの場合、BookReviewEditorActivityに遷移
-                                val intent = if (isMine == true) {
-                                    Intent(
-                                        this@BookReviewActivity,
-                                        BookReviewEditorActivity::class.java
-                                    )
-                                } else {
-                                    // isMineがfalseの場合、BookDetailActivityに遷移
-                                    Intent(this@BookReviewActivity, BookDetailActivity::class.java)
-                                }
-                                intent.putExtra(getString(R.string.bookid), bookId)
-                                startActivity(intent)
-                            }
-
-                            // RecyclerViewのレイアウトマネージャーを設定
-                            binding.recyclerView.layoutManager =
-                                LinearLayoutManager(this@BookReviewActivity)
-
-                            // RecyclerViewに境界線を表示する処理
-                            val dividerItemDecoration =
-                                DividerItemDecoration(
-                                    this@BookReviewActivity,
-                                    RecyclerView.VERTICAL,
-                                )
-                            binding.recyclerView.addItemDecoration(dividerItemDecoration)
+                            setupRecyclerView(data!!)
                         }
                     } else {
                         // Roomからデータを取得
                         Thread {
                             val data = db.bookReviewDao().getAll()
                             runOnUiThread {
-                                // プログレスバーを非表示
-                                binding.progressBar.visibility = View.GONE
-
                                 // RecyclerViewの設定
-                                binding.recyclerView.setHasFixedSize(true)
-                                binding.recyclerView.adapter = BookAdapter(data) { bookId, isMine->
-                                    // isMineがtrueの場合、BookReviewEditorActivityに遷移
-                                    val intent = if (isMine == true) {
-                                        Intent(this@BookReviewActivity, BookReviewEditorActivity::class.java)
-                                    } else {
-                                        // isMineがfalseの場合、BookDetailActivityに遷移
-                                        Intent(this@BookReviewActivity, BookDetailActivity::class.java)
-                                    }
-                                    intent.putExtra(getString(R.string.bookid), bookId)
-                                    startActivity(intent)
-                                }
-
-                                // RecyclerViewのレイアウトマネージャーを設定
-                                binding.recyclerView.layoutManager =
-                                    LinearLayoutManager(this@BookReviewActivity)
-
-                                // RecyclerViewに境界線を表示する処理
-                                val dividerItemDecoration =
-                                    DividerItemDecoration(
-                                        this@BookReviewActivity,
-                                        RecyclerView.VERTICAL,
-                                    )
-                                binding.recyclerView.addItemDecoration(dividerItemDecoration)
+                                setupRecyclerView(data)
                             }
                         }.start()
                     }
@@ -135,46 +114,13 @@ class BookReviewActivity : AppCompatActivity() {
                     Thread {
                         val data = db.bookReviewDao().getAll()
                         runOnUiThread {
-                            // プログレスバーを非表示
-                            binding.progressBar.visibility = View.GONE
-
                             // RecyclerViewの設定
-                            binding.recyclerView.setHasFixedSize(true)
-                            binding.recyclerView.adapter = BookAdapter(data) { bookId, isMine->
-                                // isMineがtrueの場合、BookReviewEditorActivityに遷移
-                                val intent = if (isMine == true) {
-                                    Intent(this@BookReviewActivity, BookReviewEditorActivity::class.java)
-                                } else {
-                                    // isMineがfalseの場合、BookDetailActivityに遷移
-                                    Intent(this@BookReviewActivity, BookDetailActivity::class.java)
-                                }
-                                intent.putExtra(getString(R.string.bookid), bookId)
-                                startActivity(intent)
-                            }
-
-                            // RecyclerViewのレイアウトマネージャーを設定
-                            binding.recyclerView.layoutManager =
-                                LinearLayoutManager(this@BookReviewActivity)
-
-                            // RecyclerViewに境界線を表示する処理
-                            val dividerItemDecoration =
-                                DividerItemDecoration(
-                                    this@BookReviewActivity,
-                                    RecyclerView.VERTICAL,
-                                )
-                            binding.recyclerView.addItemDecoration(dividerItemDecoration)
+                            setupRecyclerView(data)
                         }
                     }.start()
                 }
             }
         )
-
-        //フローティングアクションボタンの設定
-        binding.fab.setOnClickListener {
-            // ReviewPostActivityに遷移
-            val intent = Intent(this@BookReviewActivity, ReviewPostActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     // ツールバーにメニューを表示
