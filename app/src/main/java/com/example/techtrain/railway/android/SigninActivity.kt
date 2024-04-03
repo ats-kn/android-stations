@@ -116,7 +116,7 @@ class SigninActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
-                }
+                },
             )
         }
     }

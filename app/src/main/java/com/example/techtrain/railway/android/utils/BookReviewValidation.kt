@@ -111,15 +111,14 @@ object BookReviewValidation {
                 if (isValidTitle(
                         title,
                     ) && isValidUrl(url) && isValidDetail(detail) && isValidReview(review)
-                )
-                    {
-                        button?.isEnabled = true
-                        button?.backgroundTintList =
-                            ContextCompat.getColorStateList(
-                                activity,
-                                R.color.enabled_button_color,
-                            )
-                    } else {
+                ) {
+                    button?.isEnabled = true
+                    button?.backgroundTintList =
+                        ContextCompat.getColorStateList(
+                            activity,
+                            R.color.enabled_button_color,
+                        )
+                } else {
                     button?.isEnabled = false
                     button?.backgroundTintList =
                         ContextCompat.getColorStateList(

@@ -101,7 +101,6 @@ class BookReviewEditorActivity : AppCompatActivity() {
     // 保存ボタンを押したらレビュー情報を更新
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-
             android.R.id.home -> {
                 // 戻るボタンが押されたときの処理
                 finish()

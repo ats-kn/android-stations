@@ -83,7 +83,7 @@ class BookDetailActivity : AppCompatActivity() {
                     ).show()
                     finish()
                 }
-            }
+            },
         )
     }
 
