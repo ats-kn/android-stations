@@ -205,17 +205,14 @@ class BookReviewActivity : AppCompatActivity() {
                                 Toast.makeText(this@BookReviewActivity, "更新しました", Toast.LENGTH_SHORT).show()
                             } else {
                                 // httpステータスコードが200番台以外の場合、ログを表示
-                                val errorMessage = response.errorBody()?.string()
-
-                                // errorMessageの中からErrorMessageJPを抜き出す
-                                val errorMessageJP =
-                                    errorMessage?.substringAfter(
-                                        "ErrorMessageJP\":\"",
+                                val errorMessageJp =
+                                    response.errorBody()?.string()?.substringAfter(
+                                        "message\":\"",
                                     )?.substringBefore("\"")
 
                                 Toast.makeText(
                                     this@BookReviewActivity,
-                                    "Error: $errorMessageJP",
+                                    errorMessageJp,
                                     Toast.LENGTH_SHORT,
                                 ).show()
                             }

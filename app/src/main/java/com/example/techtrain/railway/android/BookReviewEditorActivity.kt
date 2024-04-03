@@ -126,7 +126,11 @@ class BookReviewEditorActivity : AppCompatActivity(){
                                 }, 500)
                             } else {
                                 // 更新が失敗した場合の処理を記述
-                                Toast.makeText(this@BookReviewEditorActivity, "レビューの更新に失敗しました", Toast.LENGTH_SHORT).show()
+                                val errorMessageJp =
+                                    response.errorBody()?.string()?.substringAfter(
+                                        "message\":\"",
+                                    )?.substringBefore("\"")
+                                Toast.makeText(this@BookReviewEditorActivity, errorMessageJp, Toast.LENGTH_SHORT).show()
                                 finish()
                             }
                         }
@@ -172,7 +176,11 @@ class BookReviewEditorActivity : AppCompatActivity(){
                                 }, 500)
                             } else {
                                 // 削除が失敗した場合の処理を記述
-                                Toast.makeText(this@BookReviewEditorActivity, "レビューの削除に失敗しました", Toast.LENGTH_SHORT).show()
+                                val errorMessageJp =
+                                    response.errorBody()?.string()?.substringAfter(
+                                        "message\":\"",
+                                    )?.substringBefore("\"")
+                                Toast.makeText(this@BookReviewEditorActivity, errorMessageJp, Toast.LENGTH_SHORT).show()
                                 finish()
                             }
                         }

@@ -90,7 +90,11 @@ class UserInfoEditorActivity : AppCompatActivity() {
                         call: Call<ResponseBody>,
                         t: Throwable,
                     ) {
-                        Log.e("UserInfoEditorActivity", "ユーザー情報の更新に失敗しました")
+                        Toast.makeText(
+                            applicationContext,
+                            getString(R.string.fail_network),
+                            Toast.LENGTH_SHORT,
+                        ).show()
                     }
                 }
             )

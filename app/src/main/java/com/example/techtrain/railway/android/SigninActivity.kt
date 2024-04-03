@@ -88,17 +88,14 @@ class SigninActivity : AppCompatActivity() {
                             finish()
                         } else {
                             // サーバからのhttpエラーメッセージを取得
-                            val errorMessage = response.errorBody()?.string()
-
-                            // errorMessageの中からErrorMessageJPを抜き出す
-                            val errorMessageJP =
-                                errorMessage?.substringAfter(
-                                    "ErrorMessageJP\":\"",
+                            val errorMessageJp =
+                                response.errorBody()?.string()?.substringAfter(
+                                    "message\":\"",
                                 )?.substringBefore("\"")
 
                             Toast.makeText(
                                 this@SigninActivity,
-                                "Error: $errorMessageJP",
+                                errorMessageJp,
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
