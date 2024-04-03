@@ -74,6 +74,8 @@ class LoginActivity : AppCompatActivity() {
 
                             // BookReviewActivityに遷移
                             val intent = Intent(this@LoginActivity, BookReviewActivity::class.java)
+                            // バックキーでログイン画面に戻らないようにする
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
                             finish()
                         } else {
