@@ -64,7 +64,7 @@ interface BookApiService {
     @POST("books")
     fun postReview(
         @Header("Authorization") token: String,
-        @Body book: Book
+        @Body book: Book,
     ): Call<ResponseBody>
 
     // ユーザー情報更新

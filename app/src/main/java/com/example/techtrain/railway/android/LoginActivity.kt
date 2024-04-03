@@ -32,7 +32,9 @@ class LoginActivity : AppCompatActivity() {
                 binding.loginButton,
                 isValidInput = { _, email, password ->
                     // emailとpasswordのバリデーション確認
-                    UserInfoValidation.isValidEmail(email) && UserInfoValidation.isValidPassword(password)
+                    UserInfoValidation.isValidEmail(
+                        email,
+                    ) && UserInfoValidation.isValidPassword(password)
                 },
             )
 

@@ -18,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BookReviewEditorActivity : AppCompatActivity(){
+class BookReviewEditorActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookrevieweditorBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,17 +33,18 @@ class BookReviewEditorActivity : AppCompatActivity(){
             binding.editTextUrl,
             binding.editTextDetail,
             binding.editTextReview,
-            null
+            null,
         )
 
         // BookReviewActivityから遷移した際に受け取るbookIdを取得
         val bookId = intent.getStringExtra(getString(R.string.bookid))
 
         // トークンを取得
-        val token = getSharedPreferences(
-            getString(R.string.preference),
-            MODE_PRIVATE,
-        ).getString(getString(R.string.token_key), null)
+        val token =
+            getSharedPreferences(
+                getString(R.string.preference),
+                MODE_PRIVATE,
+            ).getString(getString(R.string.token_key), null)
 
         // 本の詳細情報を取得
         val getBookDetail = service.getBookDetail("Bearer $token", bookId!!)
@@ -64,19 +65,28 @@ class BookReviewEditorActivity : AppCompatActivity(){
                         binding.editTextUrl.setText(data?.url ?: "")
                         binding.editTextDetail.setText(data?.detail ?: "")
                         binding.editTextReview.setText(data?.review ?: "")
-
-
-                    }else{
-                        Toast.makeText(this@BookReviewEditorActivity, getString(R.string.fail_get_bookdetail), Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            this@BookReviewEditorActivity,
+                            getString(R.string.fail_get_bookdetail),
+                            Toast.LENGTH_SHORT,
+                        ).show()
                         finish()
                     }
                 }
 
-                override fun onFailure(call: Call<Book>, t: Throwable) {
-                    Toast.makeText(this@BookReviewEditorActivity, getString(R.string.fail_network), Toast.LENGTH_SHORT).show()
+                override fun onFailure(
+                    call: Call<Book>,
+                    t: Throwable,
+                ) {
+                    Toast.makeText(
+                        this@BookReviewEditorActivity,
+                        getString(R.string.fail_network),
+                        Toast.LENGTH_SHORT,
+                    ).show()
                     finish()
                 }
-            }
+            },
         )
     }
 
@@ -99,13 +109,14 @@ class BookReviewEditorActivity : AppCompatActivity(){
                 val bookId = intent.getStringExtra(getString(R.string.bookid))
 
                 // トークンを取得
-                val token = getSharedPreferences(
-                    getString(R.string.preference),
-                    MODE_PRIVATE,
-                ).getString(getString(R.string.token_key), null)
+                val token =
+                    getSharedPreferences(
+                        getString(R.string.preference),
+                        MODE_PRIVATE,
+                    ).getString(getString(R.string.token_key), null)
 
                 // Bookオブジェクトを作成
-                val book = Book("", title, url, detail, review, "",null)
+                val book = Book("", title, url, detail, review, "", null)
                 // レビュー情報を更新
                 val updateReview = service.updateReview("Bearer $token", bookId!!, book)
                 updateReview.enqueue(
@@ -116,12 +127,20 @@ class BookReviewEditorActivity : AppCompatActivity(){
                         ) {
                             if (response.isSuccessful) {
                                 // 更新が成功した場合の処理を記述
-                                Toast.makeText(this@BookReviewEditorActivity, "レビューを更新しました", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@BookReviewEditorActivity,
+                                    "レビューを更新しました",
+                                    Toast.LENGTH_SHORT,
+                                ).show()
 
                                 // Handlerを使って画面遷移を遅らせる
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     // BookReviewActivityに遷移
-                                    val intent = Intent(this@BookReviewEditorActivity, BookReviewActivity::class.java)
+                                    val intent =
+                                        Intent(
+                                            this@BookReviewEditorActivity,
+                                            BookReviewActivity::class.java,
+                                        )
                                     startActivity(intent)
                                 }, 500)
                             } else {
@@ -130,17 +149,28 @@ class BookReviewEditorActivity : AppCompatActivity(){
                                     response.errorBody()?.string()?.substringAfter(
                                         "message\":\"",
                                     )?.substringBefore("\"")
-                                Toast.makeText(this@BookReviewEditorActivity, errorMessageJp, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@BookReviewEditorActivity,
+                                    errorMessageJp,
+                                    Toast.LENGTH_SHORT,
+                                ).show()
                                 finish()
                             }
                         }
 
-                        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                        override fun onFailure(
+                            call: Call<ResponseBody>,
+                            t: Throwable,
+                        ) {
                             // 通信に失敗した場合の処理を記述
-                            Toast.makeText(this@BookReviewEditorActivity, getString(R.string.fail_network), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@BookReviewEditorActivity,
+                                getString(R.string.fail_network),
+                                Toast.LENGTH_SHORT,
+                            ).show()
                             finish()
                         }
-                    }
+                    },
                 )
                 true
             }
@@ -151,10 +181,11 @@ class BookReviewEditorActivity : AppCompatActivity(){
                 val bookId = intent.getStringExtra(getString(R.string.bookid))
 
                 // トークンを取得
-                val token = getSharedPreferences(
-                    getString(R.string.preference),
-                    MODE_PRIVATE,
-                ).getString(getString(R.string.token_key), null)
+                val token =
+                    getSharedPreferences(
+                        getString(R.string.preference),
+                        MODE_PRIVATE,
+                    ).getString(getString(R.string.token_key), null)
 
                 // レビュー情報を削除
                 val deleteReview = service.deleteReview("Bearer $token", bookId!!)
@@ -166,12 +197,20 @@ class BookReviewEditorActivity : AppCompatActivity(){
                         ) {
                             if (response.isSuccessful) {
                                 // 削除が成功した場合の処理を記述
-                                Toast.makeText(this@BookReviewEditorActivity, "レビューを削除しました", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@BookReviewEditorActivity,
+                                    "レビューを削除しました",
+                                    Toast.LENGTH_SHORT,
+                                ).show()
 
                                 // Handlerを使って画面遷移を遅らせる
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     // BookReviewActivityに遷移
-                                    val intent = Intent(this@BookReviewEditorActivity, BookReviewActivity::class.java)
+                                    val intent =
+                                        Intent(
+                                            this@BookReviewEditorActivity,
+                                            BookReviewActivity::class.java,
+                                        )
                                     startActivity(intent)
                                 }, 500)
                             } else {
@@ -180,17 +219,28 @@ class BookReviewEditorActivity : AppCompatActivity(){
                                     response.errorBody()?.string()?.substringAfter(
                                         "message\":\"",
                                     )?.substringBefore("\"")
-                                Toast.makeText(this@BookReviewEditorActivity, errorMessageJp, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@BookReviewEditorActivity,
+                                    errorMessageJp,
+                                    Toast.LENGTH_SHORT,
+                                ).show()
                                 finish()
                             }
                         }
 
-                        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                        override fun onFailure(
+                            call: Call<ResponseBody>,
+                            t: Throwable,
+                        ) {
                             // 通信に失敗した場合の処理を記述
-                            Toast.makeText(this@BookReviewEditorActivity, t.message.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@BookReviewEditorActivity,
+                                t.message.toString(),
+                                Toast.LENGTH_SHORT,
+                            ).show()
                             finish()
                         }
-                    }
+                    },
                 )
                 true
             }

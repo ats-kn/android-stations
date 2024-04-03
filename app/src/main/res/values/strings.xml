@@ -3,7 +3,6 @@
     <string name="main_text" translatable="false">Hello My World!</string>
     <string name="submit" tools:ignore="MissingTranslation">SUBMIT</string>
     <string name="new_activity" tools:ignore="MissingTranslation">New Activity</string>
-    <string name="loading">Loading...</string>
     <string name="mainactivity">MainActivity</string>
     <string name="sing_in">サインイン</string>
     <string name="login">ログイン</string>

@@ -20,7 +20,6 @@ import kotlin.test.assertNotNull
 
 @RunWith(AndroidJUnit4::class)
 class S11 {
-
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 

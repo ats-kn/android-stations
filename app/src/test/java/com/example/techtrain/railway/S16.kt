@@ -7,14 +7,14 @@ import kotlin.test.assertNotNull
 
 @RunWith(AndroidJUnit4::class)
 class S16 {
-
     @Test
     fun test() {
-        val retrofitClass = try {
-            Class.forName("androidx.recyclerview.widget.RecyclerView")
-        } catch (_: ClassNotFoundException) {
-            null
-        }
+        val retrofitClass =
+            try {
+                Class.forName("androidx.recyclerview.widget.RecyclerView")
+            } catch (_: ClassNotFoundException) {
+                null
+            }
         assertNotNull(retrofitClass, "RecyclerViewが依存関係に含まれていません。")
     }
 }

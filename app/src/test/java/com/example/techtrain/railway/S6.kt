@@ -21,7 +21,6 @@ import kotlin.test.assertTrue
 
 @RunWith(AndroidJUnit4::class)
 class S6 {
-
     @Test
     fun test() {
         Intents.init()
@@ -38,25 +37,27 @@ class S6 {
             defaultLocaleText = displayedText
             assertNotEquals("", displayedText, "TextViewにテキストが設定されていません。")
             val activitySourceFile =
-                File("src/main/java/com/example/techtrain/railway/android/MainActivity.kt").absoluteFile
+                File(
+                    "src/main/java/com/example/techtrain/railway/android/MainActivity.kt",
+                ).absoluteFile
             assertTrue(activitySourceFile.exists(), "MainActivity.ktが見つかりません。")
             assertFalse(
                 activitySourceFile.containsOnAnyLine("\"$displayedText\""),
-                "MainActivityにTextViewで表示されているテキストが定義されています。"
+                "MainActivityにTextViewで表示されているテキストが定義されています。",
             )
             val activityLayoutFile =
                 File("src/main/res/layout/activity_main.xml").absoluteFile
             assertTrue(activityLayoutFile.exists(), "activity_main.xmlが見つかりません。")
             assertFalse(
                 activityLayoutFile.containsOnAnyLine("\"$displayedText\""),
-                "レイアウトファイルにTextViewで表示されているテキストが定義されています。"
+                "レイアウトファイルにTextViewで表示されているテキストが定義されています。",
             )
             val stringResourceFile =
                 File("src/main/res/values/strings.xml").absoluteFile
             assertTrue(stringResourceFile.exists(), "strings.xmlが見つかりません。")
             assertTrue(
                 stringResourceFile.containsOnAnyLine(">$displayedText<"),
-                "strings.xmlにTextViewで表示されているテキストが定義されていません。"
+                "strings.xmlにTextViewで表示されているテキストが定義されていません。",
             )
         }
         defaultLocaleScenario.close()
@@ -76,25 +77,27 @@ class S6 {
             jaLocaleText = displayedText
             assertNotEquals("", displayedText, "TextViewにテキストが設定されていません。")
             val activitySourceFile =
-                File("src/main/java/com/example/techtrain/railway/android/MainActivity.kt").absoluteFile
+                File(
+                    "src/main/java/com/example/techtrain/railway/android/MainActivity.kt",
+                ).absoluteFile
             assertTrue(activitySourceFile.exists(), "MainActivity.ktが見つかりません。")
             assertFalse(
                 activitySourceFile.containsOnAnyLine("\"$displayedText\""),
-                "MainActivityにTextViewで表示されているテキストが定義されています。"
+                "MainActivityにTextViewで表示されているテキストが定義されています。",
             )
             val activityLayoutFile =
                 File("src/main/res/layout/activity_main.xml").absoluteFile
             assertTrue(activityLayoutFile.exists(), "activity_main.xmlが見つかりません。")
             assertFalse(
                 activityLayoutFile.containsOnAnyLine("\"$displayedText\""),
-                "レイアウトファイルにTextViewで表示されているテキストが定義されています。"
+                "レイアウトファイルにTextViewで表示されているテキストが定義されています。",
             )
             val stringResourceFile =
                 File("src/main/res/values-ja/strings.xml").absoluteFile
             assertTrue(stringResourceFile.exists(), "strings.xmlが見つかりません。")
             assertTrue(
                 stringResourceFile.containsOnAnyLine(">$displayedText<"),
-                "strings.xmlにTextViewで表示されているテキストが定義されていません。"
+                "strings.xmlにTextViewで表示されているテキストが定義されていません。",
             )
         }
         jaLocaleScenario.close()

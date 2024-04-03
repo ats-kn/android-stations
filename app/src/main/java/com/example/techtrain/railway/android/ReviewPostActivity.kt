@@ -26,14 +26,15 @@ class ReviewPostActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // textWatcherの設定
-        val textWatcher = BookReviewValidation.createTextWatcherBookReview(
-            this,
-            binding.editTextTitle,
-            binding.editTextUrl,
-            binding.editTextDetail,
-            binding.editTextReview,
-            binding.postButton
-        )
+        val textWatcher =
+            BookReviewValidation.createTextWatcherBookReview(
+                this,
+                binding.editTextTitle,
+                binding.editTextUrl,
+                binding.editTextDetail,
+                binding.editTextReview,
+                binding.postButton,
+            )
 
         binding.editTextTitle.addTextChangedListener(textWatcher)
         binding.editTextUrl.addTextChangedListener(textWatcher)
@@ -46,7 +47,7 @@ class ReviewPostActivity : AppCompatActivity() {
             val url = binding.editTextUrl.text.toString()
             val detail = binding.editTextDetail.text.toString()
             val review = binding.editTextReview.text.toString()
-            val book = Book("",title, url, detail, review, "", null)
+            val book = Book("", title, url, detail, review, "", null)
 
             // トークンの取得
             val token =
@@ -74,9 +75,10 @@ class ReviewPostActivity : AppCompatActivity() {
                             // Handlerを使用して遅延を入れる, これによって新規で投稿したレビューが表示される
                             Handler(Looper.getMainLooper()).postDelayed({
                                 // BookReviewActivityに遷移
-                                val intent = Intent(this@ReviewPostActivity, BookReviewActivity::class.java)
+                                val intent =
+                                    Intent(this@ReviewPostActivity, BookReviewActivity::class.java)
                                 startActivity(intent)
-                            }, 500)  // 500ミリ秒（0.5秒) 後に遷移
+                            }, 500) // 500ミリ秒（0.5秒) 後に遷移
                         } else {
                             // レビューの投稿に失敗したらトーストを表示
                             val errorMessageJp =
@@ -91,11 +93,14 @@ class ReviewPostActivity : AppCompatActivity() {
                         }
                     }
 
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    override fun onFailure(
+                        call: Call<ResponseBody>,
+                        t: Throwable,
+                    ) {
                         // 通信に失敗したらログを表示
                         Log.d("ReviewPost", t.message.toString())
                     }
-                }
+                },
             )
         }
     }

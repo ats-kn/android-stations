@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.3.1" type="baseline" client="gradle" dependencies="false" name="AGP (8.3.1)" variant="all" version="8.3.1">
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;mainactivity&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;mainactivity&quot;>MainActivity&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;sing_in&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;sing_in&quot;>サインイン&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="7"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;login&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;login&quot;>ログイン&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="8"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;user_name_editText_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;user_name_editText_label&quot;>ユーザ名を入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;user_email_editText_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;user_email_editText_label&quot;>メールアドレスを入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;user_password_editText_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;user_password_editText_label&quot;>パスワードを入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="11"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;user_entry&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;user_entry&quot;>アカウント作成&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="12"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;check_name&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;check_name&quot;>ユーザ名は3文字以上にしてください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;check_email&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;check_email&quot;>有効なメールアドレスを入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="14"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;check_password&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;check_password&quot;>大文字、小文字、数字を含む8文字以上のパスワードを入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="15"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;preference&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;preference&quot;>Preference&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="16"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;token_key&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;token_key&quot;>token_key&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="17"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;logout&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;logout&quot;>ログアウト&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="18"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;User_Info_Editor&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;User_Info_Editor&quot;>ユーザ情報編集&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="19"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;user_name_edit_editText_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;user_name_edit_editText_label&quot;>変更するユーザー名を入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="20"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;user_info_edit&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;user_info_edit&quot;>ユーザ名を変更&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="21"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;bookreview&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;bookreview&quot;>BookReview&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="22"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;textview_label_review&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;textview_label_review&quot;>レビュー&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="23"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;book_title_editText_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;book_title_editText_label&quot;>タイトルを入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="24"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;book_url_editText_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;book_url_editText_label&quot;>URLを入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="25"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;book_detail_editText_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;book_detail_editText_label&quot;>本の概要を入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="26"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;book_review_editText_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;book_review_editText_label&quot;>本の感想を入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="27"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;post_button_label&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;post_button_label&quot;>送信&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="28"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;check_title&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;check_title&quot;>1文字以上のタイトルを入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="29"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;check_url&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;check_url&quot;>https:// または http:// で始まるURLを入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="30"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;check_detail&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;check_detail&quot;>1文字以上の概要を入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="31"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;check_review&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;check_review&quot;>1文字以上の感想を入力してください&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="32"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;edit_user_info_success&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;edit_user_info_success&quot;>にユーザー名を変更しました&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="33"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;post_review_success&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;post_review_success&quot;>レビューの投稿に成功しました&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="34"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;bookid&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;bookid&quot;>bookId&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="35"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;textview_label_url&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;textview_label_url&quot;>URL&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="36"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;fail_get_bookdetail&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;fail_get_bookdetail&quot;>本の詳細情報の取得に失敗しました&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="37"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;fail_network&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;fail_network&quot;>ネットワークに繋がっていません&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="38"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="MissingTranslation"
+        message="&quot;refresh&quot; is not translated in &quot;ja&quot; (Japanese)"
+        errorLine1="    &lt;string name=&quot;refresh&quot;>更新&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="39"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        message="The resource string &quot;main_text&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;ja&quot; (Japanese) here"
+        errorLine1="    &lt;string name=&quot;main_text&quot;>ハローマイワールド!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-ja/strings.xml"
+            line="3"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="        &lt;item name=&quot;android:statusBarColor&quot; tools:targetApi=&quot;l&quot;>?attr/colorPrimaryVariant&lt;/item>"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-night/themes.xml"
+            line="13"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="        &lt;item name=&quot;android:statusBarColor&quot; tools:targetApi=&quot;l&quot;>?attr/colorPrimaryVariant&lt;/item>"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="13"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.mipmap.ic_launcher_round` appears to be unused"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.main_text` appears to be unused"
+        errorLine1="    &lt;string name=&quot;main_text&quot; translatable=&quot;false&quot;>Hello My World!&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="3"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.submit` appears to be unused"
+        errorLine1="    &lt;string name=&quot;submit&quot; tools:ignore=&quot;MissingTranslation&quot;>SUBMIT&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="4"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.new_activity` appears to be unused"
+        errorLine1="    &lt;string name=&quot;new_activity&quot; tools:ignore=&quot;MissingTranslation&quot;>New Activity&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="5"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.mainactivity` appears to be unused"
+        errorLine1="    &lt;string name=&quot;mainactivity&quot;>MainActivity&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="6"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.bookreview` appears to be unused"
+        errorLine1="    &lt;string name=&quot;bookreview&quot;>BookReview&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="22"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.windows` appears to be unused">
+        <location
+            file="src/main/res/drawable-hdpi/windows.png"/>
+    </issue>
+
+    <issue
+        id="RedundantNamespace"
+        message="This namespace declaration is redundant"
+        errorLine1="    &lt;WebView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_webview.xml"
+            line="6"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="UnusedNamespace"
+        message="Unused namespace declaration xmlns:android; already declared on the root element"
+        errorLine1="    &lt;WebView xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_webview.xml"
+            line="6"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="MonochromeLauncherIcon"
+        message="The application adaptive icon is missing a monochrome tag"
+        errorLine1="&lt;adaptive-icon xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
+        errorLine2="^">
+        <location
+            file="src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="IconDipSize"
+        message="The image `windows.png` varies significantly in its density-independent (dip) size across the various density versions: drawable-hdpi/windows.png: 171x171 dp (256x256 px), drawable-mdpi/windows.png: 256x256 dp (256x256 px), drawable-xhdpi/windows.png: 128x128 dp (256x256 px)">
+        <location
+            file="src/main/res/drawable-xhdpi/windows.png"/>
+        <location
+            file="src/main/res/drawable-hdpi/windows.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/windows.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicatesConfig"
+        message="The `windows.png` icon has identical contents in the following configuration folders: drawable-hdpi, drawable-mdpi, drawable-xhdpi">
+        <location
+            file="src/main/res/drawable-xhdpi/windows.png"/>
+        <location
+            file="src/main/res/drawable-mdpi/windows.png"/>
+        <location
+            file="src/main/res/drawable-hdpi/windows.png"/>
+    </issue>
+
+    <issue
+        id="IconMissingDensityFolder"
+        message="Missing density variation folders in `src/main/res`: drawable-xxhdpi">
+        <location
+            file="src/main/res"/>
+    </issue>
+
+    <issue
+        id="TextFields"
+        message="The view name (`@+id/editTextUrl`) suggests this is a URI, but it does not include &apos;`textUri`&apos; in the `inputType`"
+        errorLine1="            android:inputType=&quot;textEmailAddress&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_bookrevieweditor.xml"
+            line="34"
+            column="13"/>
+        <location
+            file="src/main/res/layout/activity_bookrevieweditor.xml"
+            line="30"
+            column="13"
+            message="id defined here"/>
+    </issue>
+
+    <issue
+        id="TextFields"
+        message="The view name (`@+id/editTextPassword`) suggests this is a password, but it does not include &apos;`textPassword`&apos; in the `inputType`"
+        errorLine1="            android:inputType=&quot;textEmailAddress&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_login.xml"
+            line="28"
+            column="13"/>
+        <location
+            file="src/main/res/layout/activity_login.xml"
+            line="23"
+            column="13"
+            message="id defined here"/>
+    </issue>
+
+    <issue
+        id="TextFields"
+        message="The view name (`@+id/editTextUrl`) suggests this is a URI, but it does not include &apos;`textUri`&apos; in the `inputType`"
+        errorLine1="            android:inputType=&quot;textEmailAddress&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_reviewpost.xml"
+            line="28"
+            column="13"/>
+        <location
+            file="src/main/res/layout/activity_reviewpost.xml"
+            line="24"
+            column="13"
+            message="id defined here"/>
+    </issue>
+
+    <issue
+        id="TextFields"
+        message="The view name (`@+id/editTextPassword`) suggests this is a password, but it does not include &apos;`textPassword`&apos; in the `inputType`"
+        errorLine1="            android:inputType=&quot;textEmailAddress&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_signin.xml"
+            line="39"
+            column="13"/>
+        <location
+            file="src/main/res/layout/activity_signin.xml"
+            line="34"
+            column="13"
+            message="id defined here"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_bookrevieweditor.xml"
+            line="19"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_bookrevieweditor.xml"
+            line="29"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_bookrevieweditor.xml"
+            line="39"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_bookrevieweditor.xml"
+            line="48"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_login.xml"
+            line="13"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_login.xml"
+            line="22"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_reviewpost.xml"
+            line="13"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_reviewpost.xml"
+            line="23"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_reviewpost.xml"
+            line="33"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_reviewpost.xml"
+            line="42"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_signin.xml"
+            line="13"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_signin.xml"
+            line="23"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        message="Missing `autofillHints` attribute"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_signin.xml"
+            line="33"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;com.google.android.material.floatingactionbutton.FloatingActionButton"
+        errorLine2="     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_bookreview.xml"
+            line="17"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;保存&quot;, should use `@string` resource"
+        errorLine1="            android:title=&quot;保存&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_bookrevieweditor.xml"
+            line="8"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        message="Hardcoded string &quot;削除&quot;, should use `@string` resource"
+        errorLine1="            android:title=&quot;削除&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/menu/menu_bookrevieweditor.xml"
+            line="14"
+            column="13"/>
+    </issue>
+
+</issues>

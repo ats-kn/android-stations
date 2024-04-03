@@ -18,7 +18,7 @@ object UserInfoValidation {
         emailEditText: EditText?,
         passwordEditText: EditText?,
         button: Button,
-        isValidInput: (String, String, String) -> Boolean
+        isValidInput: (String, String, String) -> Boolean,
     ): TextWatcher {
         // ボタンを無効化
         button.isEnabled = false

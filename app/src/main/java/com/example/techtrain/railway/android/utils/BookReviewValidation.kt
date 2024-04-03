@@ -17,7 +17,7 @@ object BookReviewValidation {
         urlEditText: EditText?,
         detailEditText: EditText?,
         reviewEditText: EditText?,
-        button: Button?
+        button: Button?,
     ): TextWatcher {
         // ボタンを無効化
         button?.isEnabled = false
@@ -60,7 +60,7 @@ object BookReviewValidation {
                 val url = urlEditText.text.toString()
                 if (!isValidUrl(url)) {
                     // urlの要件を満たしていないことを表示
-                    urlEditText.error = activity.getString (R.string.check_url)
+                    urlEditText.error = activity.getString(R.string.check_url)
                 }
             }
         }
@@ -108,14 +108,18 @@ object BookReviewValidation {
                 val review = reviewEditText?.text.toString()
 
                 // すべてのEditTextの値が正しい場合、ボタンを有効化
-                if ( isValidTitle(title) && isValidUrl(url) && isValidDetail(detail) && isValidReview(review)){
-                    button?.isEnabled = true
-                    button?.backgroundTintList =
-                        ContextCompat.getColorStateList(
-                            activity,
-                            R.color.enabled_button_color
-                        )
-                } else {
+                if (isValidTitle(
+                        title,
+                    ) && isValidUrl(url) && isValidDetail(detail) && isValidReview(review)
+                )
+                    {
+                        button?.isEnabled = true
+                        button?.backgroundTintList =
+                            ContextCompat.getColorStateList(
+                                activity,
+                                R.color.enabled_button_color,
+                            )
+                    } else {
                     button?.isEnabled = false
                     button?.backgroundTintList =
                         ContextCompat.getColorStateList(
@@ -147,7 +151,6 @@ object BookReviewValidation {
     private fun isValidTitle(title: String): Boolean {
         return title.isNotEmpty()
     }
-
 
     // urlのバリデーション
     // https:// または http:// で始まるURLを許可

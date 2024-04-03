@@ -13,11 +13,9 @@ import org.robolectric.shadows.ShadowLog
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-
 @RunWith(AndroidJUnit4::class)
 @Config(shadows = [ShadowLog::class])
 class S13 {
-
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 

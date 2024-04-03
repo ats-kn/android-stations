@@ -18,7 +18,6 @@ import kotlin.test.assertTrue
 
 @RunWith(AndroidJUnit4::class)
 class S8 {
-
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
@@ -42,7 +41,7 @@ class S8 {
             assertEquals(
                 1,
                 mdpiDrawableDirectory.listFiles()?.size,
-                "画像が存在しないか、2つ以上の画像がdrawable-mdpiフォルダにあります。"
+                "画像が存在しないか、2つ以上の画像がdrawable-mdpiフォルダにあります。",
             )
             val drawableFile = checkNotNull(mdpiDrawableDirectory.listFiles()?.first())
             val drawableName = drawableFile.name
@@ -61,8 +60,10 @@ class S8 {
                 File("src/main/res/layout/activity_main.xml").absoluteFile
             assertTrue(activityLayoutFile.exists(), "activity_main.xmlが見つかりません。")
             assertTrue(
-                activityLayoutFile.containsOnAnyLine("android:src=\"@drawable/${drawableFile.nameWithoutExtension}\""),
-                "ImageViewに画像が設定されていません。"
+                activityLayoutFile.containsOnAnyLine(
+                    "android:src=\"@drawable/${drawableFile.nameWithoutExtension}\"",
+                ),
+                "ImageViewに画像が設定されていません。",
             )
         }
         Intents.release()

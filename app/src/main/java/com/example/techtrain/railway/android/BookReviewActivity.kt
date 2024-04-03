@@ -30,17 +30,19 @@ class BookReviewActivity : AppCompatActivity() {
 
         // RecyclerViewの設定
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.adapter = BookAdapter(data) { bookId, isMine ->
-            // isMineがtrueの場合、BookReviewEditorActivityに遷移
-            val intent = if (isMine == true) {
-                Intent(this, BookReviewEditorActivity::class.java)
-            } else {
-                // isMineがfalseの場合、BookDetailActivityに遷移
-                Intent(this, BookDetailActivity::class.java)
+        binding.recyclerView.adapter =
+            BookAdapter(data) { bookId, isMine ->
+                // isMineがtrueの場合、BookReviewEditorActivityに遷移
+                val intent =
+                    if (isMine == true) {
+                        Intent(this, BookReviewEditorActivity::class.java)
+                    } else {
+                        // isMineがfalseの場合、BookDetailActivityに遷移
+                        Intent(this, BookDetailActivity::class.java)
+                    }
+                intent.putExtra(getString(R.string.bookid), bookId)
+                startActivity(intent)
             }
-            intent.putExtra(getString(R.string.bookid), bookId)
-            startActivity(intent)
-        }
 
         // RecyclerViewのレイアウトマネージャーを設定
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -56,7 +58,7 @@ class BookReviewActivity : AppCompatActivity() {
         binding = ActivityBookreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //フローティングアクションボタンの設定
+        // フローティングアクションボタンの設定
         binding.fab.setOnClickListener {
             // ReviewPostActivityに遷移
             val intent = Intent(this@BookReviewActivity, ReviewPostActivity::class.java)
@@ -119,7 +121,7 @@ class BookReviewActivity : AppCompatActivity() {
                         }
                     }.start()
                 }
-            }
+            },
         )
     }
 
@@ -178,17 +180,25 @@ class BookReviewActivity : AppCompatActivity() {
                                 binding.progressBar.visibility = View.GONE
                                 // RecyclerViewの設定
                                 binding.recyclerView.setHasFixedSize(true)
-                                binding.recyclerView.adapter = BookAdapter(data!!) { bookId, isMine->
-                                    // isMineがtrueの場合、BookReviewEditorActivityに遷移
-                                    val intent = if (isMine == true) {
-                                        Intent(this@BookReviewActivity, BookReviewEditorActivity::class.java)
-                                    } else {
-                                        // isMineがfalseの場合、BookDetailActivityに遷移
-                                        Intent(this@BookReviewActivity, BookDetailActivity::class.java)
+                                binding.recyclerView.adapter =
+                                    BookAdapter(data!!) { bookId, isMine ->
+                                        // isMineがtrueの場合、BookReviewEditorActivityに遷移
+                                        val intent =
+                                            if (isMine == true) {
+                                                Intent(
+                                                    this@BookReviewActivity,
+                                                    BookReviewEditorActivity::class.java,
+                                                )
+                                            } else {
+                                                // isMineがfalseの場合、BookDetailActivityに遷移
+                                                Intent(
+                                                    this@BookReviewActivity,
+                                                    BookDetailActivity::class.java,
+                                                )
+                                            }
+                                        intent.putExtra(getString(R.string.bookid), bookId)
+                                        startActivity(intent)
                                     }
-                                    intent.putExtra(getString(R.string.bookid), bookId)
-                                    startActivity(intent)
-                                }
 
                                 // RecyclerViewのレイアウトマネージャーを設定
                                 binding.recyclerView.layoutManager =
@@ -202,7 +212,11 @@ class BookReviewActivity : AppCompatActivity() {
                                     )
                                 binding.recyclerView.addItemDecoration(dividerItemDecoration)
 
-                                Toast.makeText(this@BookReviewActivity, "更新しました", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@BookReviewActivity,
+                                    "更新しました",
+                                    Toast.LENGTH_SHORT,
+                                ).show()
                             } else {
                                 // httpステータスコードが200番台以外の場合、ログを表示
                                 val errorMessageJp =
@@ -223,9 +237,13 @@ class BookReviewActivity : AppCompatActivity() {
                             call: Call<List<Book>>,
                             t: Throwable,
                         ) {
-                            Toast.makeText(this@BookReviewActivity, getString(R.string.fail_network), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@BookReviewActivity,
+                                getString(R.string.fail_network),
+                                Toast.LENGTH_SHORT,
+                            ).show()
                         }
-                    }
+                    },
                 )
                 true
             }

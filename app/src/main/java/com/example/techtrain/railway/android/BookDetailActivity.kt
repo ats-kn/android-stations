@@ -12,8 +12,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BookDetailActivity : AppCompatActivity(){
+class BookDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookdetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBookdetailBinding.inflate(layoutInflater)
@@ -23,10 +24,11 @@ class BookDetailActivity : AppCompatActivity(){
         val bookId = intent.getStringExtra(getString(R.string.bookid))
 
         // トークンを取得
-        val token = getSharedPreferences(
-            getString(R.string.preference),
-            MODE_PRIVATE,
-        ).getString(getString(R.string.token_key), null)
+        val token =
+            getSharedPreferences(
+                getString(R.string.preference),
+                MODE_PRIVATE,
+            ).getString(getString(R.string.token_key), null)
 
         // 本の詳細情報を取得
         val getBookDetail = service.getBookDetail("Bearer $token", bookId!!)
@@ -51,21 +53,33 @@ class BookDetailActivity : AppCompatActivity(){
 
                         binding.bookUrl.setOnClickListener {
                             // WebViewActivityに遷移
-                            val intent = Intent(this@BookDetailActivity, WebViewActivity::class.java)
+                            val intent =
+                                Intent(this@BookDetailActivity, WebViewActivity::class.java)
                             intent.putExtra("URL", binding.bookUrl.text.toString())
                             startActivity(intent)
                         }
-                    }else{
-                        Toast.makeText(this@BookDetailActivity,
-                            getString(R.string.fail_get_bookdetail), Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            this@BookDetailActivity,
+                            getString(R.string.fail_get_bookdetail),
+                            Toast.LENGTH_SHORT,
+                        ).show()
                         finish()
                     }
                 }
-                override fun onFailure(call: Call<Book>, t: Throwable) {
-                    Toast.makeText(this@BookDetailActivity, getString(R.string.fail_network), Toast.LENGTH_SHORT).show()
+
+                override fun onFailure(
+                    call: Call<Book>,
+                    t: Throwable,
+                ) {
+                    Toast.makeText(
+                        this@BookDetailActivity,
+                        getString(R.string.fail_network),
+                        Toast.LENGTH_SHORT,
+                    ).show()
                     finish()
                 }
-            }
+            },
         )
     }
 }

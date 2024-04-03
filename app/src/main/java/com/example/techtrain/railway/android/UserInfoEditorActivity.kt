@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.data.User
@@ -36,7 +35,7 @@ class UserInfoEditorActivity : AppCompatActivity() {
                 isValidInput = { name, _, _ ->
                     // nameのバリデーション確認
                     UserInfoValidation.isValidName(name)
-                }
+                },
             )
 
         binding.editTextUpdateName.addTextChangedListener(textWatcher)
@@ -69,7 +68,11 @@ class UserInfoEditorActivity : AppCompatActivity() {
                             // Handlerを使って画面遷移を遅らせる
                             Handler(Looper.getMainLooper()).postDelayed({
                                 // BookReviewActivityに遷移
-                                val intent = Intent(this@UserInfoEditorActivity, BookReviewActivity::class.java)
+                                val intent =
+                                    Intent(
+                                        this@UserInfoEditorActivity,
+                                        BookReviewActivity::class.java,
+                                    )
                                 startActivity(intent)
                             }, 500)
                         } else {
@@ -96,7 +99,7 @@ class UserInfoEditorActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
-                }
+                },
             )
         }
     }

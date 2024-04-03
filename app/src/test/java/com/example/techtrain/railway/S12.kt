@@ -12,8 +12,8 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.techtrain.railway.android.MainActivity
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.not
 import org.junit.Rule
 import org.junit.Test
@@ -23,7 +23,6 @@ import kotlin.test.assertNotNull
 
 @RunWith(AndroidJUnit4::class)
 class S12 {
-
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
@@ -50,8 +49,8 @@ class S12 {
             intended(
                 allOf(
                     hasComponent(hasShortClassName(not(`is`(".MainActivity")))),
-                    hasExtra(`is`("KEY_INPUT_TEXT"), `is`(expectedText))
-                )
+                    hasExtra(`is`("KEY_INPUT_TEXT"), `is`(expectedText)),
+                ),
             )
         }
         Intents.release()

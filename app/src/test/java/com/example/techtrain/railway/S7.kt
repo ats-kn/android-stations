@@ -19,7 +19,6 @@ import kotlin.test.fail
 
 @RunWith(AndroidJUnit4::class)
 class S7 {
-
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
@@ -40,7 +39,7 @@ class S7 {
             assertEquals(
                 -16777216 /* 0xFF000000 */,
                 colorDrawable.color,
-                "ImageViewの色が黒(#000000)ではありません。"
+                "ImageViewの色が黒(#000000)ではありません。",
             )
 
             val activityLayoutFile =
@@ -52,31 +51,35 @@ class S7 {
             if (widthMatchParentCount >= 2) {
                 fail(
                     """
-                        ConstraintLayoutの中で、layout_width・layout_heightに対して `match_parent` を使用するのは推奨されていません。
-                        https://developer.android.com/training/constraint-layout?hl=ja#adjust-the-view-size
-                        """.trimIndent()
+                    ConstraintLayoutの中で、layout_width・layout_heightに対して `match_parent` を使用するのは推奨されていません。
+                    https://developer.android.com/training/constraint-layout?hl=ja#adjust-the-view-size
+                    """.trimIndent(),
                 )
             }
 
             assertTrue(
                 activityLayoutFile.containsOnAnyLine("android:layout_width=\"0dp\""),
-                "ImageViewの横幅が正しく設定されていません。"
+                "ImageViewの横幅が正しく設定されていません。",
             )
             assertTrue(
                 activityLayoutFile.containsOnAnyLine("android:layout_height=\"50dp\""),
-                "ImageViewの高さが正しく設定されていません。"
+                "ImageViewの高さが正しく設定されていません。",
             )
             assertTrue(
                 activityLayoutFile.containsOnAnyLine("app:layout_constraintEnd_toEndOf=\"parent\""),
-                "ImageViewの右方向への制約が正しく設定されていません。"
+                "ImageViewの右方向への制約が正しく設定されていません。",
             )
             assertTrue(
-                activityLayoutFile.containsOnAnyLine("app:layout_constraintStart_toStartOf=\"parent\""),
-                "ImageViewの左方向への制約が正しく設定されていません。"
+                activityLayoutFile.containsOnAnyLine(
+                    "app:layout_constraintStart_toStartOf=\"parent\"",
+                ),
+                "ImageViewの左方向への制約が正しく設定されていません。",
             )
             assertTrue(
-                activityLayoutFile.containsOnAnyLine("app:layout_constraintTop_toBottomOf=\"@\\+?id/text\"".toRegex()),
-                "ImageViewの上方向への制約が正しく設定されていません。"
+                activityLayoutFile.containsOnAnyLine(
+                    "app:layout_constraintTop_toBottomOf=\"@\\+?id/text\"".toRegex(),
+                ),
+                "ImageViewの上方向への制約が正しく設定されていません。",
             )
         }
         Intents.release()
@@ -90,5 +93,4 @@ class S7 {
 
     private fun File.getAppearedCount(text: String): Int =
         useLines { it.count { line -> line.contains(text, false) } }
-
 }
