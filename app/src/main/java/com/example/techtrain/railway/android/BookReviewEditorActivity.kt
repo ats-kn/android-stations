@@ -133,7 +133,7 @@ class BookReviewEditorActivity : AppCompatActivity(){
 
                         override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                             // 通信に失敗した場合の処理を記述
-                            Toast.makeText(this@BookReviewEditorActivity, t.message.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@BookReviewEditorActivity, getString(R.string.fail_network), Toast.LENGTH_SHORT).show()
                             finish()
                         }
                     }

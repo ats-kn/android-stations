@@ -7,7 +7,7 @@
     <item
             android:id="@+id/action_update"
             android:icon="@drawable/outline_cached_24"
-            android:title="update"
+            android:title="@string/refresh"
             app:showAsAction="ifRoom"/>
 
     <item
