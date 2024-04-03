@@ -2,6 +2,7 @@ package com.example.techtrain.railway.android
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,9 @@ class BookDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBookdetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // ツールバーに戻るボタンを表示
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // BookReviewActivityから遷移した際に受け取るbookIdを取得
         val bookId = intent.getStringExtra(getString(R.string.bookid))
@@ -79,7 +83,19 @@ class BookDetailActivity : AppCompatActivity() {
                     ).show()
                     finish()
                 }
-            },
+            }
         )
+    }
+
+    // ツールバーのボタンが押されたときの処理
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // 戻るボタンが押されたときの処理
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

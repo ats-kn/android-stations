@@ -153,6 +153,8 @@ class BookReviewActivity : AppCompatActivity() {
 
                 // MainActivityに遷移する
                 val intent = Intent(this@BookReviewActivity, MainActivity::class.java)
+                // バックキーでレビュー画面に戻らないようにする
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
                 true
             }

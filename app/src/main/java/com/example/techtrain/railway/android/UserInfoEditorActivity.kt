@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.data.User
@@ -24,6 +25,9 @@ class UserInfoEditorActivity : AppCompatActivity() {
         binding = ActivityUserinfoeditorBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.editTextUpdateName
+
+        // ツールバーに戻るボタンを表示
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val textWatcher =
             UserInfoValidation.createTextWatcherUserInfo(
@@ -102,5 +106,17 @@ class UserInfoEditorActivity : AppCompatActivity() {
                 },
             )
         }
+    }
+
+    // ツールバーの戻るボタンが押された時の処理
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // 戻るボタンが押されたときの処理
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

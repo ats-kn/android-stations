@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.data.Book
@@ -24,6 +24,9 @@ class ReviewPostActivity : AppCompatActivity() {
         // Bindingの設定
         binding = ActivityReviewpostBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // ツールバーに戻るボタンを表示
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // textWatcherの設定
         val textWatcher =
@@ -77,6 +80,8 @@ class ReviewPostActivity : AppCompatActivity() {
                                 // BookReviewActivityに遷移
                                 val intent =
                                     Intent(this@ReviewPostActivity, BookReviewActivity::class.java)
+                                // バックキーでレビュー投稿投稿画面に戻らないようにする
+                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                                 startActivity(intent)
                             }, 500) // 500ミリ秒（0.5秒) 後に遷移
                         } else {
@@ -97,11 +102,26 @@ class ReviewPostActivity : AppCompatActivity() {
                         call: Call<ResponseBody>,
                         t: Throwable,
                     ) {
-                        // 通信に失敗したらログを表示
-                        Log.d("ReviewPost", t.message.toString())
+                        // ネットワークエラーの場合はトーストを表示
+                        Toast.makeText(
+                            applicationContext,
+                            getString(R.string.fail_network),
+                            Toast.LENGTH_SHORT,
+                        ).show()
                     }
                 },
             )
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // 戻るボタンが押されたときの処理
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

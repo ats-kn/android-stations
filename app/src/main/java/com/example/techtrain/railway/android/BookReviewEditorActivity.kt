@@ -26,6 +26,9 @@ class BookReviewEditorActivity : AppCompatActivity() {
         binding = ActivityBookrevieweditorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // ツールバーに戻るボタンを表示
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         // textWatcherを設定
         BookReviewValidation.createTextWatcherBookReview(
             this,
@@ -98,6 +101,14 @@ class BookReviewEditorActivity : AppCompatActivity() {
     // 保存ボタンを押したらレビュー情報を更新
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+
+            android.R.id.home -> {
+                // 戻るボタンが押されたときの処理
+                finish()
+                true
+            }
+
+            // saveボタンを押したらレビュー情報を更新
             R.id.action_save -> {
                 // EditTextから情報を取得
                 val title = binding.editTextTitle.text.toString()
@@ -141,6 +152,8 @@ class BookReviewEditorActivity : AppCompatActivity() {
                                             this@BookReviewEditorActivity,
                                             BookReviewActivity::class.java,
                                         )
+                                    // バックキーでレビュー編集画面に戻らないようにする
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(intent)
                                 }, 500)
                             } else {

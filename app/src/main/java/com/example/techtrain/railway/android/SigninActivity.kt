@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.techtrain.railway.android.data.User
@@ -20,10 +21,12 @@ class SigninActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // Bindingの設定
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // ツールバーに戻るボタンを表示
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // バリテーションのためのTextWatcherを設定
         val textWatcher =
@@ -113,8 +116,20 @@ class SigninActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
-                },
+                }
             )
         }
+    }
+
+    // ツールバーのボタンが押されたときの処理
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // 戻るボタンが押されたときの処理
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
