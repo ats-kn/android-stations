@@ -36,8 +36,8 @@ class SigninActivity : AppCompatActivity() {
         ) { name, email, password ->
             // name, email, passwordのバリデーション確認
             UserInfoValidation.isValidName(name) &&
-                UserInfoValidation.isValidEmail(email) &&
-                UserInfoValidation.isValidPassword(password)
+            UserInfoValidation.isValidEmail(email) &&
+            UserInfoValidation.isValidPassword(password)
         }
 
         binding.editTextName.addTextChangedListener(textWatcher)
