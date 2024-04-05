@@ -32,55 +32,13 @@ object UserInfoValidation {
         val inputMethodManager = getSystemService(activity, InputMethodManager::class.java)
 
         // フォーカスが外れたときにバリデーションを行う(name)
-        nameEditText?.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                // nameEditText以外をタップでキーボードを隠す
-                inputMethodManager?.hideSoftInputFromWindow(
-                    nameEditText.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS,
-                )
-
-                val name = nameEditText.text.toString()
-                if (!isValidName(name)) {
-                    // nameの要件を満たしていないことを表示
-                    nameEditText.error = activity.getString(R.string.check_name)
-                }
-            }
-        }
+        setFocusChangeListener(activity, nameEditText, inputMethodManager, ::isValidName, R.string.check_name)
 
         // フォーカスが外れたときにバリデーションを行う(email)
-        emailEditText?.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                // emailEditText以外をタップでキーボードを隠す
-                inputMethodManager?.hideSoftInputFromWindow(
-                    emailEditText.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS,
-                )
-
-                val email = emailEditText.text.toString()
-                if (!isValidEmail(email)) {
-                    // emailの要件を満たしていないことを表示
-                    emailEditText.error = activity.getString(R.string.check_email)
-                }
-            }
-        }
+        setFocusChangeListener(activity, emailEditText, inputMethodManager, ::isValidEmail, R.string.check_email)
 
         // フォーカスが外れたときにバリデーションを行う(password)
-        passwordEditText?.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                // passwordEditText以外をタップでキーボードを隠す
-                inputMethodManager?.hideSoftInputFromWindow(
-                    passwordEditText.windowToken,
-                    InputMethodManager.HIDE_NOT_ALWAYS,
-                )
-
-                val password = passwordEditText.text.toString()
-                if (!isValidPassword(password)) {
-                    // passwordの要件を満たしていないことを表示
-                    passwordEditText.error = activity.getString(R.string.check_password)
-                }
-            }
-        }
+        setFocusChangeListener(activity, passwordEditText, inputMethodManager, ::isValidPassword, R.string.check_password)
 
         // リアルタイムに値を取得できるTextWatcherを使用
         return object : TextWatcher {
@@ -121,6 +79,31 @@ object UserInfoValidation {
                 before: Int,
                 count: Int,
             ) {}
+        }
+    }
+
+    // フォーカスが外れたときにバリデーションを行う
+    private fun setFocusChangeListener(
+        activity: AppCompatActivity,
+        editText: EditText?,
+        inputMethodManager: InputMethodManager?,
+        isValid: (String) -> Boolean,
+        errorMessageResId: Int
+    ) {
+        editText?.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                // editText以外をタップでキーボードを隠す
+                inputMethodManager?.hideSoftInputFromWindow(
+                    editText.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS,
+                )
+
+                val text = editText.text.toString()
+                if (!isValid(text)) {
+                    // textの要件を満たしていないことを表示
+                    editText.error = activity.getString(errorMessageResId)
+                }
+            }
         }
     }
 

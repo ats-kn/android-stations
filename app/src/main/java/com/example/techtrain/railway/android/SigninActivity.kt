@@ -55,18 +55,7 @@ class SigninActivity : AppCompatActivity() {
         // ViewModelの結果を観察
         signinViewModel.signinResult.observe(this) { result ->
             result.fold(
-                onSuccess = { token ->
-                    // SharedPreferencesを使用してトークンを保存
-                    val sharedPref =
-                        getSharedPreferences(
-                            getString(R.string.preference),
-                            MODE_PRIVATE,
-                        )
-                    with(sharedPref.edit()) {
-                        putString(getString(R.string.token_key), token)
-                        apply()
-                    }
-
+                onSuccess = {
                     // BookReviewActivityに遷移
                     val intent = Intent(this, BookReviewActivity::class.java)
                     // バックキーでサインイン画面に戻れないようにする
