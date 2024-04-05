@@ -3,7 +3,6 @@ package com.example.techtrain.railway.android
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -67,7 +66,6 @@ class SigninActivity : AppCompatActivity() {
                         response: Response<ResponseBody>,
                     ) {
                         if (response.isSuccessful) {
-                            Log.d("SignInActivity", "サインインに成功しました")
 
                             // サインインに成功したらトークンを取得
                             val token =
