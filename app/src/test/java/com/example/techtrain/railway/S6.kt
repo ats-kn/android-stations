@@ -8,7 +8,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.intent.Intents
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.techtrain.railway.android.MainActivity
+import com.example.techtrain.railway.android.activity.MainActivity
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File

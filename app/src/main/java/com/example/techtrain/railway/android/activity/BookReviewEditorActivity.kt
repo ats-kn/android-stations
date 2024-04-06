@@ -1,4 +1,4 @@
-package com.example.techtrain.railway.android
+package com.example.techtrain.railway.android.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.techtrain.railway.android.R
 import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.ActivityBookrevieweditorBinding
 import com.example.techtrain.railway.android.utils.BookReviewValidation

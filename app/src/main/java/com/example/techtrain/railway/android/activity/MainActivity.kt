@@ -1,8 +1,9 @@
-package com.example.techtrain.railway.android
+package com.example.techtrain.railway.android.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.techtrain.railway.android.R
 import com.example.techtrain.railway.android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -10,7 +10,7 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.Railway">
         <activity
-                android:name=".MainActivity"
+                android:name=".activity.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,42 +19,42 @@
         </activity>
 
         <activity
-                android:name=".SigninActivity"
+                android:name=".activity.SigninActivity"
                 android:exported="true">
         </activity>
 
         <activity
-                android:name=".LoginActivity"
+                android:name=".activity.LoginActivity"
                 android:exported="true">
         </activity>
 
         <activity
-                android:name=".BookReviewActivity"
+                android:name=".activity.BookReviewActivity"
                 android:exported="true">
         </activity>
 
         <activity
-            android:name=".UserInfoEditorActivity"
+            android:name=".activity.UserInfoEditorActivity"
             android:exported="true">
         </activity>
 
         <activity
-                android:name=".ReviewPostActivity"
+                android:name=".activity.ReviewPostActivity"
                 android:exported="true">
         </activity>
 
         <activity
-                android:name=".BookDetailActivity"
+                android:name=".activity.BookDetailActivity"
                 android:exported="true">
         </activity>
 
         <activity
-                android:name=".WebViewActivity"
+                android:name=".activity.WebViewActivity"
                 android:exported="true">
         </activity>
 
         <activity
-                android:name=".BookReviewEditorActivity"
+                android:name=".activity.BookReviewEditorActivity"
                 android:exported="true">
         </activity>
 

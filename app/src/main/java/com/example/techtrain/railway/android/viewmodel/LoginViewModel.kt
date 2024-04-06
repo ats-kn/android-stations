@@ -16,38 +16,41 @@ import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class SigninViewModel @Inject constructor(@ApplicationContext private val context: Context) : ViewModel() {
+class LoginViewModel @Inject constructor(@ApplicationContext private val context: Context) : ViewModel() {
     private val sharedPref: SharedPreferences = context.getSharedPreferences(
         context.getString(R.string.preference),
         Context.MODE_PRIVATE
     )
 
-    val signinResult = MutableLiveData<Result<String>>()
+    val loginResult = MutableLiveData<Result<String>>()
 
-    fun signin(name: String, email: String, password: String) {
-        val user = User(name, email, password)
-        val signin = service.signin(user)
+    fun login(email: String, password: String) {
+        val user = User("", email, password)
+        val login = service.login(user)
 
-        signin.enqueue(object : Callback<ResponseBody> {
+        login.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
-                    val token = response.body()?.string()?.substringAfter("token\":\"")?.substringBefore("\"")
+                    val token = response.body()?.string()?.substringAfter("token\":\"")
+                        ?.substringBefore("\"")
 
                     // SharedPreferencesを使用してトークンを保存
                     with(sharedPref.edit()) {
-                        putString(context.getString(R.string.token_key), token?:"")
+                        putString(context.getString(R.string.token_key), token ?: "")
                         apply()
                     }
 
-                    signinResult.value = Result.success(token?:"")
+                    loginResult.value = Result.success(token ?: "")
                 } else {
-                    val errorMessageJp = response.errorBody()?.string()?.substringAfter("message\":\"")?.substringBefore("\"")
-                    signinResult.value = Result.failure(Exception(errorMessageJp))
+                    val errorMessageJp =
+                        response.errorBody()?.string()?.substringAfter("message\":\"")
+                            ?.substringBefore("\"")
+                    loginResult.value = Result.failure(Exception(errorMessageJp))
                 }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                signinResult.value = Result.failure(t)
+                loginResult.value = Result.failure(t)
             }
         })
     }

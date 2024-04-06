@@ -1,4 +1,4 @@
-package com.example.techtrain.railway.android
+package com.example.techtrain.railway.android.activity
 
 import android.content.Context
 import android.content.Intent
@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.techtrain.railway.android.R
 import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.ActivityBookreviewBinding
 import com.example.techtrain.railway.android.room.BookReviewDatabase
