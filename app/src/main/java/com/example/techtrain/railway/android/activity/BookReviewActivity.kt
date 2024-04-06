@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,15 +15,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.techtrain.railway.android.R
 import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.ActivityBookreviewBinding
-import com.example.techtrain.railway.android.room.BookReviewDatabase
 import com.example.techtrain.railway.android.utils.BookAdapter
 import com.example.techtrain.railway.android.utils.service
+import com.example.techtrain.railway.android.viewmodel.BookReviewViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@AndroidEntryPoint
 class BookReviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBookreviewBinding
+    private val bookReviewViewModel: BookReviewViewModel by viewModels()
 
     // RecyclerViewの設定
     private fun setupRecyclerView(data: List<Book>) {
@@ -66,64 +70,15 @@ class BookReviewActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Roomのインスタンスを取得
-        val db = BookReviewDatabase.getDatabase(this)
-
         // 書籍一覧情報のGETリクエスト
-        val token =
-            getSharedPreferences(
-                getString(R.string.preference),
-                MODE_PRIVATE,
-            ).getString(getString(R.string.token_key), null)
-        val getBookData = service.getBookDataAuth("Bearer $token")
+        // ViewModelを通じてデータを取得
+        bookReviewViewModel.getBookData()
 
-        getBookData.enqueue(
-            object : Callback<List<Book>> {
-                override fun onResponse(
-                    call: Call<List<Book>>,
-                    response: Response<List<Book>>,
-                ) {
-                    if (response.isSuccessful) {
-                        val data = response.body()
-
-                        // Roomにデータを保存
-                        Thread {
-                            db.bookReviewDao().deleteAll()
-                            db.bookReviewDao().insertAll(*data!!.toTypedArray())
-                        }.start()
-
-                        runOnUiThread {
-                            // RecyclerViewの設定
-                            setupRecyclerView(data!!)
-                        }
-                    } else {
-                        // Roomからデータを取得
-                        Thread {
-                            val data = db.bookReviewDao().getAll()
-                            runOnUiThread {
-                                // RecyclerViewの設定
-                                setupRecyclerView(data)
-                            }
-                        }.start()
-                    }
-                }
-
-                // 通信に失敗した場合
-                override fun onFailure(
-                    call: Call<List<Book>>,
-                    t: Throwable,
-                ) {
-                    // Roomからデータを取得
-                    Thread {
-                        val data = db.bookReviewDao().getAll()
-                        runOnUiThread {
-                            // RecyclerViewの設定
-                            setupRecyclerView(data)
-                        }
-                    }.start()
-                }
-            },
-        )
+        // ViewModelのLiveDataを観察
+        bookReviewViewModel.bookReviewList.observe(this) { data ->
+            // RecyclerViewの設定
+            setupRecyclerView(data!!)
+        }
     }
 
     // ツールバーにメニューを表示
