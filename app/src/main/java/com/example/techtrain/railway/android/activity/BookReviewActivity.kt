@@ -1,6 +1,5 @@
 package com.example.techtrain.railway.android.activity
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -16,12 +15,8 @@ import com.example.techtrain.railway.android.R
 import com.example.techtrain.railway.android.data.Book
 import com.example.techtrain.railway.android.databinding.ActivityBookreviewBinding
 import com.example.techtrain.railway.android.utils.BookAdapter
-import com.example.techtrain.railway.android.utils.service
 import com.example.techtrain.railway.android.viewmodel.BookReviewViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @AndroidEntryPoint
 class BookReviewActivity : AppCompatActivity() {
@@ -101,15 +96,11 @@ class BookReviewActivity : AppCompatActivity() {
 
             // ログアウト処理
             R.id.action_logout -> {
-                val dataStore =
-                    getSharedPreferences(getString(R.string.preference), Context.MODE_PRIVATE)
-                val editor = dataStore.edit()
-                editor.clear()
-                editor.apply()
-
-                // MainActivityに遷移する
+                // トークンを削除
+                bookReviewViewModel.logout()
+                // MainActivityに遷移
                 val intent = Intent(this@BookReviewActivity, MainActivity::class.java)
-                // バックキーでレビュー画面に戻らないようにする
+                // 遷移先に戻れないように設定
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
                 true
@@ -118,91 +109,27 @@ class BookReviewActivity : AppCompatActivity() {
             // 更新処理（レビュー情報をGET）
             R.id.action_update -> {
                 // 書籍一覧情報のGETリクエスト
-                val token =
-                    getSharedPreferences(
-                        getString(R.string.preference),
-                        MODE_PRIVATE,
-                    ).getString(getString(R.string.token_key), null)
-                val getBookData = service.getBookDataAuth("Bearer $token")
+                bookReviewViewModel.getBookData()
 
-                getBookData.enqueue(
-                    object : Callback<List<Book>> {
-                        override fun onResponse(
-                            call: Call<List<Book>>,
-                            response: Response<List<Book>>,
-                        ) {
-                            if (response.isSuccessful) {
-                                val data = response.body()
-
-                                // プログレスバーを非表示
-                                binding.progressBar.visibility = View.GONE
-                                // RecyclerViewの設定
-                                binding.recyclerView.setHasFixedSize(true)
-                                binding.recyclerView.adapter =
-                                    BookAdapter(data!!) { bookId, isMine ->
-                                        // isMineがtrueの場合、BookReviewEditorActivityに遷移
-                                        val intent =
-                                            if (isMine == true) {
-                                                Intent(
-                                                    this@BookReviewActivity,
-                                                    BookReviewEditorActivity::class.java,
-                                                )
-                                            } else {
-                                                // isMineがfalseの場合、BookDetailActivityに遷移
-                                                Intent(
-                                                    this@BookReviewActivity,
-                                                    BookDetailActivity::class.java,
-                                                )
-                                            }
-                                        intent.putExtra(getString(R.string.bookid), bookId)
-                                        startActivity(intent)
-                                    }
-
-                                // RecyclerViewのレイアウトマネージャーを設定
-                                binding.recyclerView.layoutManager =
-                                    LinearLayoutManager(this@BookReviewActivity)
-
-                                // RecyclerViewに境界線を表示する処理
-                                val dividerItemDecoration =
-                                    DividerItemDecoration(
-                                        this@BookReviewActivity,
-                                        RecyclerView.VERTICAL,
-                                    )
-                                binding.recyclerView.addItemDecoration(dividerItemDecoration)
-
-                                Toast.makeText(
-                                    this@BookReviewActivity,
-                                    "更新しました",
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-                            } else {
-                                // httpステータスコードが200番台以外の場合、ログを表示
-                                val errorMessageJp =
-                                    response.errorBody()?.string()?.substringAfter(
-                                        "message\":\"",
-                                    )?.substringBefore("\"")
-
-                                Toast.makeText(
-                                    this@BookReviewActivity,
-                                    errorMessageJp,
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-                            }
-                        }
-
-                        // 通信に失敗した場合
-                        override fun onFailure(
-                            call: Call<List<Book>>,
-                            t: Throwable,
-                        ) {
+                // ViewModelの結果を観察
+                bookReviewViewModel.getBookResult.observe(this) { result ->
+                    result.fold(
+                        onSuccess = {
                             Toast.makeText(
-                                this@BookReviewActivity,
+                                this,
+                                getString(R.string.refresh),
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                        },
+                        onFailure = {
+                            Toast.makeText(
+                                this,
                                 getString(R.string.fail_network),
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
-                    },
-                )
+                    )
+                }
                 true
             }
 
