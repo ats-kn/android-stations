@@ -18,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class BookReviewViewModel @Inject constructor(@ApplicationContext private val context: Context) : ViewModel(){
     val bookReviewList = MutableLiveData<List<Book>?>()
-    val getBookResult = MutableLiveData<Result<String>>()
     val db = BookReviewDatabase.getDatabase(context)
     private val sharedPref: SharedPreferences = context.getSharedPreferences(context.getString(R.string.preference), Context.MODE_PRIVATE)
     private val token = sharedPref.getString(context.getString(R.string.token_key), "")
@@ -44,8 +43,6 @@ class BookReviewViewModel @Inject constructor(@ApplicationContext private val co
                         // LiveDataを更新
                         bookReviewList.postValue(data)
 
-                        // 通信に成功した場合
-                        getBookResult.postValue(Result.success("Success"))
                     } else {
                         // Roomからデータを取得
                         Thread {
@@ -74,4 +71,46 @@ class BookReviewViewModel @Inject constructor(@ApplicationContext private val co
         logoutResult.postValue(true)
     }
 
+    fun updateBookData(
+        onRefreshSuccess: () -> Unit,
+        onRefreshError: () -> Unit,
+        onFailNetwork: () -> Unit,
+    ) {
+        val getBookData = service.getBookDataAuth("Bearer $token")
+
+        getBookData.enqueue(
+            object : Callback<List<Book>> {
+                override fun onResponse(
+                    call: Call<List<Book>>,
+                    response: Response<List<Book>>,
+                ) {
+                    if (response.isSuccessful) {
+                        val data = response.body()
+
+                        // Roomにデータを保存
+                        Thread {
+                            db.bookReviewDao().deleteAll()
+                            db.bookReviewDao().insertAll(*data!!.toTypedArray())
+                        }.start()
+
+                        // LiveDataを更新
+                        bookReviewList.postValue(data)
+
+                        // 通信に成功した場合
+                        onRefreshSuccess()
+                    } else {
+                        onRefreshError()
+                    }
+                }
+
+                // 通信に失敗した場合
+                override fun onFailure(
+                    call: Call<List<Book>>,
+                    t: Throwable,
+                ) {
+                    onFailNetwork()
+                }
+            }
+        )
+    }
 }

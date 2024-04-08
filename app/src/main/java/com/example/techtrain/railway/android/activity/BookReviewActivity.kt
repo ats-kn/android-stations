@@ -109,27 +109,17 @@ class BookReviewActivity : AppCompatActivity() {
             // 更新処理（レビュー情報をGET）
             R.id.action_update -> {
                 // 書籍一覧情報のGETリクエスト
-                bookReviewViewModel.getBookData()
-
-                // ViewModelの結果を観察
-                bookReviewViewModel.getBookResult.observe(this) { result ->
-                    result.fold(
-                        onSuccess = {
-                            Toast.makeText(
-                                this,
-                                getString(R.string.refresh),
-                                Toast.LENGTH_SHORT,
-                            ).show()
-                        },
-                        onFailure = {
-                            Toast.makeText(
-                                this,
-                                getString(R.string.fail_network),
-                                Toast.LENGTH_SHORT,
-                            ).show()
-                        }
-                    )
-                }
+                bookReviewViewModel.updateBookData(
+                    onRefreshSuccess = {
+                        Toast.makeText(this, getString(R.string.refresh), Toast.LENGTH_SHORT).show()
+                    },
+                    onRefreshError = {
+                        Toast.makeText(this, getString(R.string.refresh_error), Toast.LENGTH_SHORT).show()
+                    },
+                    onFailNetwork = {
+                        Toast.makeText(this, getString(R.string.fail_network), Toast.LENGTH_SHORT).show()
+                    }
+                )
                 true
             }
 
